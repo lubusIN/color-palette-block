@@ -8,7 +8,10 @@ import { filter } from 'lodash';
  */
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-const { IconButton } = wp.components;
+const {
+	IconButton,
+	Placeholder,
+} = wp.components;
 
 /**
  * Internal Dependencies
@@ -53,7 +56,6 @@ class ColorEditor extends Component {
 	}
 
 	onSelectColor( index ) {
-		console.log( this.state.selectedColor );
 		return () => {
 			if ( this.state.selectedColor !== index ) {
 				this.setState( {
@@ -75,6 +77,24 @@ class ColorEditor extends Component {
 
 	render() {
 		const { attributes, isSelected } = this.props;
+
+		if ( attributes.colors.length === 0 ) {
+			return [
+				<Placeholder key="cpb-placeholder"
+					icon="admin-appearance"
+					label={ __( 'Colors' ) }
+					instructions={ __( 'Add colors to create your palette' ) }
+				>
+					<IconButton
+						icon="insert"
+						onClick={ this.onAddColor }
+						label={ __( 'Add Color' ) }
+					>
+						Add Color
+					</IconButton>
+				</Placeholder>,
+			];
+		}
 
 		return <ul key="color-palette" className="cpb-colors">
 			{

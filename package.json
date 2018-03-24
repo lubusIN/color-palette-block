@@ -7,8 +7,7 @@
     "npm": ">=5.0.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "lodash": "^4.17.5"
+    "classnames": "^2.2.5"
   },
   "devDependencies": {
     "@wordpress/babel-preset-default": "1.0.3",
