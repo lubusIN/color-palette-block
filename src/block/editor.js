@@ -10,6 +10,11 @@ const { __ } = wp.i18n;
 const { Component } = wp.element;
 const { IconButton } = wp.components;
 
+/**
+ * Internal Dependencies
+ */
+import ColorItem from '../components/color-item';
+
 // Color Editor
 class ColorEditor extends Component {
 	constructor( ) {
@@ -22,6 +27,15 @@ class ColorEditor extends Component {
 		this.onAddColor = this.onAddColor.bind( this );
 		this.onSelectColor = this.onSelectColor.bind( this );
 		this.onRemoveColor = this.onRemoveColor.bind( this );
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		// Deselect color when deselecting the block
+		if ( ! nextProps.isSelected && this.props.isSelected ) {
+			this.setState( {
+				selectedColor: null,
+			} );
+		}
 	}
 
 	onAddColor() {
@@ -39,6 +53,7 @@ class ColorEditor extends Component {
 	}
 
 	onSelectColor( index ) {
+		console.log( this.state.selectedColor );
 		return () => {
 			if ( this.state.selectedColor !== index ) {
 				this.setState( {
@@ -49,7 +64,13 @@ class ColorEditor extends Component {
 	}
 
 	onRemoveColor( index ) {
-
+		return () => {
+			const colors = filter( this.props.attributes.colors, ( color, i ) => index !== i );
+			this.setState( { selectedColor: null } );
+			this.props.setAttributes( {
+				colors,
+			} );
+		};
 	}
 
 	render() {
@@ -58,10 +79,14 @@ class ColorEditor extends Component {
 		return <ul key="color-palette" className="cpb-colors">
 			{
 				attributes.colors.map( ( color, index ) => (
-					<li onClick={ this.onSelectColor( index ) } key={ index } className={ `cpb-${ attributes.style }` }>
-						<span className="cpb-color" style={ { backgroundColor: color.code } }></span>
-						<span className="cpb-code">{ color.code }</span>
-					</li>
+					<ColorItem
+						key={ index }
+						code={ color.code }
+						displayStyle={ attributes.style }
+						isSelected={ isSelected && this.state.selectedColor === index }
+						onSelect={ this.onSelectColor( index ) }
+						onRemove={ this.onRemoveColor( index ) }
+					/>
 				) )
 			}
 

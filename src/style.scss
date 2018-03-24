@@ -1,5 +1,11 @@
 ul.cpb-colors{
+	.is-Selected{
+		outline: 3px solid #00a0d2;
+		outline-offset: -3px;
+	}
+
 	.cpb-card {
+		position: relative;
 		padding: 5px;
 		margin-right: 10px;
 		text-align: center;
@@ -26,5 +32,24 @@ ul.cpb-colors{
 
 	.cpb-add-color {
 		display: inline-block;
+	}
+
+	.blocks-color-item__inline-menu {
+		padding: 2px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: #00a0d2;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+		z-index: 20;
+
+		.components-button {
+			color: #ffffff;
+		}
+	}
+
+	.blocks-color-item__remove {
+		padding: 0;
 	}
 }
