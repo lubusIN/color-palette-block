@@ -24,7 +24,7 @@ registerBlockType( 'lubus/color-palette-block', {
 			type: 'array',
 			source: 'query',
 			default: [],
-			selector: 'ul.colors li',
+			selector: 'ul.cpb-colors li',
 			query: {
 				swatch: {
 					selector: 'span.cpb-color',
@@ -43,7 +43,7 @@ registerBlockType( 'lubus/color-palette-block', {
 	},
 	edit: ColorEditor,
 	save( props ) {
-		return <ul className="colors">
+		return <ul className="cpb-colors">
 			{
 				props.attributes.colors.map( ( color, index ) => (
 					<li key={ index } className={ `cpb-${ props.attributes.style }` }>

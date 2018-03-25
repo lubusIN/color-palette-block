@@ -8,13 +8,14 @@
     ]
   ],
   "plugins": [
+		"lodash",
     "transform-object-rest-spread",
     [
       "transform-react-jsx",
       {
         "pragma": "wp.element.createElement"
       }
-    ]
+		]
   ],
   "env": {
     "default": {

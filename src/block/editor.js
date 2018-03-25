@@ -15,8 +15,8 @@ const {
 /**
  * Internal Dependencies
  */
-import ColorItem from '../components/color-item';
 import AddColorItem from '../components/add-color-item';
+import ColorItem from '../components/color-item';
 
 // Color Editor
 class ColorEditor extends Component {
@@ -27,7 +27,7 @@ class ColorEditor extends Component {
 		this.onRemoveColor = this.onRemoveColor.bind( this );
 		this.onPickColor = this.onPickColor.bind( this );
 
-		this.props.attributes.colors = [];
+		//this.props.attributes.colors = [];
 		this.state = {
 			selectedColor: null,
 			pickedColor: '#22194D',
@@ -55,8 +55,6 @@ class ColorEditor extends Component {
 		this.props.setAttributes( {
 			colors,
 		} );
-
-		this.isSelected = false;
 	}
 
 	onSelectColor( index ) {
@@ -89,7 +87,7 @@ class ColorEditor extends Component {
 		const { attributes, isSelected } = this.props;
 
 		if ( attributes.colors.length === 0 ) {
-			return [
+			return (
 				<Placeholder key="cpb-placeholder"
 					icon="admin-appearance"
 					label={ __( 'Colors' ) }
@@ -101,35 +99,36 @@ class ColorEditor extends Component {
 						onPickColor={ this.onPickColor }
 						actionText
 					/>
-
-				</Placeholder>,
-			];
+				</Placeholder>
+			);
 		}
 
-		return <ul key="color-palette" className="cpb-colors">
-			{
-				attributes.colors.map( ( color, index ) => (
-					<ColorItem
-						key={ index }
-						code={ color.code }
-						displayStyle={ attributes.style }
-						isSelected={ isSelected && this.state.selectedColor === index }
-						onSelect={ this.onSelectColor( index ) }
-						onRemove={ this.onRemoveColor( index ) }
-					/>
-				) )
-			}
+		return (
+			<ul key="color-palette" className={ `${ this.props.className } cpb-colors` }>
+				{
+					attributes.colors.map( ( color, index ) => (
+						<ColorItem
+							key={ index }
+							code={ color.code }
+							displayStyle={ attributes.style }
+							isSelected={ isSelected && this.state.selectedColor === index }
+							onSelect={ this.onSelectColor( index ) }
+							onRemove={ this.onRemoveColor( index ) }
+						/>
+					) )
+				}
 
-			{ isSelected &&
-			<li className="cpb-add-color">
-				<AddColorItem
-					color={ this.state.pickedColor }
-					onAddColor={ this.onAddColor }
-					onPickColor={ this.onPickColor }
-				/>
-			</li>
-			}
-		</ul>;
+				{ isSelected &&
+				<li className="cpb-add-color">
+					<AddColorItem
+						color={ this.state.pickedColor }
+						onAddColor={ this.onAddColor }
+						onPickColor={ this.onPickColor }
+					/>
+				</li>
+				}
+			</ul>
+		);
 	}
 }
 
