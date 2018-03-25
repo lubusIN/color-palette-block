@@ -9,7 +9,6 @@ import { filter } from 'lodash';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 const {
-	IconButton,
 	Placeholder,
 } = wp.components;
 
@@ -17,19 +16,22 @@ const {
  * Internal Dependencies
  */
 import ColorItem from '../components/color-item';
+import AddColorItem from '../components/add-color-item';
 
 // Color Editor
 class ColorEditor extends Component {
 	constructor( ) {
 		super( ...arguments );
-
-		this.state = {
-			selectedColor: null,
-		};
-
 		this.onAddColor = this.onAddColor.bind( this );
 		this.onSelectColor = this.onSelectColor.bind( this );
 		this.onRemoveColor = this.onRemoveColor.bind( this );
+		this.onPickColor = this.onPickColor.bind( this );
+
+		this.props.attributes.colors = [];
+		this.state = {
+			selectedColor: null,
+			pickedColor: '#22194D',
+		};
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -43,7 +45,7 @@ class ColorEditor extends Component {
 
 	onAddColor() {
 		const colors = this.props.attributes.colors;
-		const newColor = '#' + Math.floor( Math.random() * 16777215 ).toString( 16 );
+		const newColor = this.state.pickedColor;
 		const AddColor = {
 			swatch: '',
 			code: newColor,
@@ -53,6 +55,8 @@ class ColorEditor extends Component {
 		this.props.setAttributes( {
 			colors,
 		} );
+
+		this.isSelected = false;
 	}
 
 	onSelectColor( index ) {
@@ -75,6 +79,12 @@ class ColorEditor extends Component {
 		};
 	}
 
+	onPickColor( color ) {
+		this.setState( {
+			pickedColor: color.hex,
+		} );
+	}
+
 	render() {
 		const { attributes, isSelected } = this.props;
 
@@ -85,13 +95,13 @@ class ColorEditor extends Component {
 					label={ __( 'Colors' ) }
 					instructions={ __( 'Add colors to create your palette' ) }
 				>
-					<IconButton
-						icon="insert"
-						onClick={ this.onAddColor }
-						label={ __( 'Add Color' ) }
-					>
-						Add Color
-					</IconButton>
+					<AddColorItem
+						color={ this.state.pickedColor }
+						onAddColor={ this.onAddColor }
+						onPickColor={ this.onPickColor }
+						actionText
+					/>
+
 				</Placeholder>,
 			];
 		}
@@ -112,10 +122,10 @@ class ColorEditor extends Component {
 
 			{ isSelected &&
 			<li className="cpb-add-color">
-				<IconButton
-					icon="insert"
-					onClick={ this.onAddColor }
-					label={ __( 'Add Color' ) }
+				<AddColorItem
+					color={ this.state.pickedColor }
+					onAddColor={ this.onAddColor }
+					onPickColor={ this.onPickColor }
 				/>
 			</li>
 			}

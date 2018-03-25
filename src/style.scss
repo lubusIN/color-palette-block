@@ -53,3 +53,13 @@ ul.cpb-colors{
 		padding: 0;
 	}
 }
+
+.components-icon-button{
+	&.blocks-color-item__add-color{
+		margin: auto;
+	}
+}
+
+.sketch-picker{
+	min-width: fit-content;
+}

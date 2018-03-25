@@ -7,7 +7,9 @@
     "npm": ">=5.0.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "react": "^16.2.0",
+    "react-color": "^2.14.0"
   },
   "devDependencies": {
     "@wordpress/babel-preset-default": "1.0.3",
