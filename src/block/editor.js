@@ -22,7 +22,7 @@ import AddColorItem from '../components/add-color-item';
  * Color Palette Editor UI Component
  */
 class ColorEditor extends Component {
-	constructor( ) {
+	constructor() {
 		super( ...arguments );
 		this.onAddColor = this.onAddColor.bind( this );
 		this.onSelectColor = this.onSelectColor.bind( this );
@@ -53,11 +53,9 @@ class ColorEditor extends Component {
 			swatch: '',
 			code: pickedColor,
 		};
-		const colorPalette = colors;
-		colorPalette.push( newColor );
 
 		setAttributes( {
-			colors: colorPalette,
+			colors: colors.concat( newColor ),
 		} );
 	}
 
