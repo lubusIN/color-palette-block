@@ -8,6 +8,7 @@ const { registerBlockType } = wp.blocks;
  * Internal Dependencies
  */
 import blockAttributes from './data/attributes';
+import icons from './data/icons';
 import ColorEditor from './block/editor';
 import ColorPalette from './block/render';
 import './style.scss';
@@ -17,7 +18,7 @@ import './style.scss';
  */
 registerBlockType( 'lubus/color-palette-block', {
 	title: __( 'Color Palette' ),
-	icon: 'admin-appearance',
+	icon: icons.logo,
 	category: 'layout',
 	attributes: blockAttributes,
 	edit: ColorEditor,
