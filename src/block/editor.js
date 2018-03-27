@@ -8,9 +8,7 @@ import { filter } from 'lodash';
  */
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-const {
-	Placeholder,
-} = wp.components;
+const { Placeholder } = wp.components;
 
 /**
  * Internal Dependencies

@@ -39,7 +39,12 @@ const AddColorItem = ( props ) => {
 					label={ __( 'Add Color' ) }
 				/>
 			) }
-			renderContent={ () => {
+			renderContent={ ( { onClose } ) => {
+				const onSelect = () => {
+					onAddColor();
+					onClose();
+				};
+
 				return (
 					<div>
 						<ColorPicker
@@ -49,8 +54,7 @@ const AddColorItem = ( props ) => {
 
 						<IconButton
 							icon="admin-appearance"
-							onClick={ onAddColor }
-
+							onClick={ onSelect }
 							label={ __( 'Add Color' ) }
 							className="blocks-color-item__add-color" >
 						Add Color
