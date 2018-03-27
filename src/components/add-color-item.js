@@ -20,11 +20,12 @@ const {
  * @returns {jsx} react element
  */
 const AddColorItem = ( props ) => {
+	// Component props
 	const { color, onPickColor, onAddColor } = props;
 
+	// Event handler
 	const onChangeColor = ( colorSelected ) => onPickColor( colorSelected );
 
-	// TODO: Fix toggle close after add
 	return (
 		<Dropdown
 			className="blocks-color-item__color-dropdown"
@@ -56,8 +57,9 @@ const AddColorItem = ( props ) => {
 							icon="admin-appearance"
 							onClick={ onSelect }
 							label={ __( 'Add Color' ) }
-							className="blocks-color-item__add-color" >
-						Add Color
+							className="blocks-color-item__add-color"
+						>
+							Add Color
 						</IconButton>
 					</div>
 				);

@@ -10,6 +10,7 @@ const ColorPalette = ( props ) => {
 
 	return <ul className="cpb-colors">
 		{
+			// Render colors
 			colors.map( ( color, index ) => (
 				<li key={ index } className={ `cpb-${ style }` }>
 					<span className="cpb-color" style={ { backgroundColor: color.code } }></span>

@@ -18,15 +18,21 @@ import AddColorItem from '../components/add-color-item';
 
 /**
  * Color Palette Editor UI Component
+ *
+ * @class ColorEditor
+ * @extends {Component}
  */
 class ColorEditor extends Component {
 	constructor() {
 		super( ...arguments );
+
+		// Event binding
 		this.onAddColor = this.onAddColor.bind( this );
 		this.onSelectColor = this.onSelectColor.bind( this );
 		this.onRemoveColor = this.onRemoveColor.bind( this );
 		this.onPickColor = this.onPickColor.bind( this );
 
+		// Initial state
 		this.state = {
 			selectedColor: null,
 			pickedColor: '#22194D',
@@ -34,7 +40,7 @@ class ColorEditor extends Component {
 	}
 
 	componentWillReceiveProps( nextProps ) {
-		// Deselect color when deselecting the block
+		// Component Lifecycle: Deselect color when deselecting the block
 		if ( ! nextProps.isSelected && this.props.isSelected ) {
 			this.setState( {
 				selectedColor: null,
@@ -91,6 +97,7 @@ class ColorEditor extends Component {
 		const { attributes, isSelected, className } = this.props;
 		const { colors, style } = attributes;
 
+		// Display placeholder if palette is empty
 		if ( colors.length === 0 ) {
 			return (
 				<Placeholder key="cpb-placeholder"
@@ -110,6 +117,7 @@ class ColorEditor extends Component {
 		return (
 			<ul key="cpb-colors" className={ `${ className } cpb-colors` }>
 				{
+					// Display colors stored in attributes
 					colors.map( ( color, index ) => (
 						<ColorItem
 							key={ index }
@@ -122,14 +130,16 @@ class ColorEditor extends Component {
 					) )
 				}
 
-				{ isSelected &&
-				<li className="cpb-add-color">
-					<AddColorItem
-						color={ pickedColor }
-						onAddColor={ this.onAddColor }
-						onPickColor={ this.onPickColor }
-					/>
-				</li>
+				{
+					// If block is selected display add color button
+					isSelected &&
+					<li className="cpb-add-color">
+						<AddColorItem
+							color={ pickedColor }
+							onAddColor={ this.onAddColor }
+							onPickColor={ this.onPickColor }
+						/>
+					</li>
 				}
 			</ul>
 		);
