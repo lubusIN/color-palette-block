@@ -10,45 +10,43 @@ const { __ } = wp.i18n;
 const { Component } = wp.element;
 const { IconButton } = wp.components;
 
+/**
+ * ColorItem Component
+ */
 class ColorItem extends Component {
 	constructor() {
 		super( ...arguments );
 
-		this.onColorClick = this.onColorClick.bind( this );
-		this.bindContainer = this.bindContainer.bind( this );
+		this.onSelect = this.onSelect.bind( this );
 	}
 
-	bindContainer( ref ) {
-		this.container = ref;
-	}
-
-	onColorClick() {
+	onSelect() {
 		if ( ! this.props.isSelected ) {
 			this.props.onSelect();
 		}
 	}
 
 	render() {
+		const { isSelected, code, displayStyle, onRemove } = this.props;
+
 		return (
 			<li
-				className={ `cpb-${ this.props.displayStyle } ${ classnames( { 'is-Selected': this.props.isSelected } ) }` }
-				onClick={ this.onColorClick }
-				ref={ this.bindContainer }
-			>
+				className={ `cpb-${ displayStyle } ${ classnames( { 'is-Selected': isSelected } ) }` }
+				onClick={ this.onSelect } >
 
-				{ this.props.isSelected &&
-				<div className="blocks-color-item__inline-menu">
-					<IconButton
-						icon="no-alt"
-						onClick={ this.props.onRemove }
-						className="blocks-color-item__remove"
-						label={ __( 'Remove Color' ) }
-					/>
-				</div>
+				{ isSelected &&
+					<div className="blocks-color-item__inline-menu">
+						<IconButton
+							icon="no-alt"
+							onClick={ onRemove }
+							className="blocks-color-item__remove"
+							label={ __( 'Remove Color' ) }
+						/>
+					</div>
 				}
 
-				<span className="cpb-color" style={ { backgroundColor: this.props.code } }></span>
-				<span className="cpb-code">{ this.props.code }</span>
+				<span className="cpb-color" style={ { backgroundColor: code } }></span>
+				<span className="cpb-code">{ code }</span>
 			</li>
 		);
 	}

@@ -15,10 +15,12 @@ const {
 /**
  * Internal Dependencies
  */
-import AddColorItem from '../components/add-color-item';
 import ColorItem from '../components/color-item';
+import AddColorItem from '../components/add-color-item';
 
-// Color Editor
+/**
+ * Color Palette Editor UI Component
+ */
 class ColorEditor extends Component {
 	constructor( ) {
 		super( ...arguments );
@@ -27,7 +29,6 @@ class ColorEditor extends Component {
 		this.onRemoveColor = this.onRemoveColor.bind( this );
 		this.onPickColor = this.onPickColor.bind( this );
 
-		//this.props.attributes.colors = [];
 		this.state = {
 			selectedColor: null,
 			pickedColor: '#22194D',
@@ -44,37 +45,43 @@ class ColorEditor extends Component {
 	}
 
 	onAddColor() {
-		const colors = this.props.attributes.colors;
-		const newColor = this.state.pickedColor;
-		const AddColor = {
-			swatch: '',
-			code: newColor,
-		};
+		const { pickedColor } = this.state;
+		const { attributes, setAttributes } = this.props;
+		const { colors } = attributes;
 
-		colors.push( AddColor );
-		this.props.setAttributes( {
-			colors,
+		const newColor = {
+			swatch: '',
+			code: pickedColor,
+		};
+		const colorPalette = colors;
+		colorPalette.push( newColor );
+
+		setAttributes( {
+			colors: colorPalette,
 		} );
 	}
 
 	onSelectColor( index ) {
-		return () => {
-			if ( this.state.selectedColor !== index ) {
-				this.setState( {
-					selectedColor: index,
-				} );
-			}
-		};
+		const { selectedColor } = this.state;
+
+		if ( selectedColor !== index ) {
+			this.setState( {
+				selectedColor: index,
+			} );
+		}
 	}
 
 	onRemoveColor( index ) {
-		return () => {
-			const colors = filter( this.props.attributes.colors, ( color, i ) => index !== i );
-			this.setState( { selectedColor: null } );
-			this.props.setAttributes( {
-				colors,
-			} );
-		};
+		const { attributes, setAttributes } = this.props;
+		const { colors } = attributes;
+
+		const finalColors = filter( colors, ( color, i ) => index !== i );
+
+		this.setState( { selectedColor: null } );
+
+		setAttributes( {
+			colors: finalColors,
+		} );
 	}
 
 	onPickColor( color ) {
@@ -84,9 +91,11 @@ class ColorEditor extends Component {
 	}
 
 	render() {
-		const { attributes, isSelected } = this.props;
+		const { selectedColor, pickedColor } = this.state;
+		const { attributes, isSelected, className } = this.props;
+		const { colors, style } = attributes;
 
-		if ( attributes.colors.length === 0 ) {
+		if ( colors.length === 0 ) {
 			return (
 				<Placeholder key="cpb-placeholder"
 					icon="admin-appearance"
@@ -94,26 +103,25 @@ class ColorEditor extends Component {
 					instructions={ __( 'Add colors to create your palette' ) }
 				>
 					<AddColorItem
-						color={ this.state.pickedColor }
+						color={ pickedColor }
 						onAddColor={ this.onAddColor }
 						onPickColor={ this.onPickColor }
-						actionText
 					/>
 				</Placeholder>
 			);
 		}
 
 		return (
-			<ul key="color-palette" className={ `${ this.props.className } cpb-colors` }>
+			<ul key="cpb-colors" className={ `${ className } cpb-colors` }>
 				{
-					attributes.colors.map( ( color, index ) => (
+					colors.map( ( color, index ) => (
 						<ColorItem
 							key={ index }
 							code={ color.code }
-							displayStyle={ attributes.style }
-							isSelected={ isSelected && this.state.selectedColor === index }
-							onSelect={ this.onSelectColor( index ) }
-							onRemove={ this.onRemoveColor( index ) }
+							displayStyle={ style }
+							isSelected={ isSelected && selectedColor === index }
+							onSelect={ ( e ) => this.onSelectColor( index, e ) }
+							onRemove={ ( e ) => this.onRemoveColor( index, e ) }
 						/>
 					) )
 				}
@@ -121,7 +129,7 @@ class ColorEditor extends Component {
 				{ isSelected &&
 				<li className="cpb-add-color">
 					<AddColorItem
-						color={ this.state.pickedColor }
+						color={ pickedColor }
 						onAddColor={ this.onAddColor }
 						onPickColor={ this.onPickColor }
 					/>

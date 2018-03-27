@@ -2,7 +2,7 @@
  * External Dependencies
  */
 import React from 'react';
-import { SketchPicker } from 'react-color';
+import { SketchPicker as CpbPicker } from 'react-color';
 
 /**
  * WordPress Dependencies
@@ -15,10 +15,10 @@ const {
 
 // AddColor Component
 const AddColorItem = ( props ) => {
-	const onChangeColor = ( color ) => {
-		props.onPickColor( color );
-	};
+	const { color, onPickColor, onAddColor } = props;
+	const onChangeColor = ( colorSelected ) => onPickColor( colorSelected );
 
+	// TODO: Fix toggle close after add
 	return (
 		<Dropdown
 			className="blocks-color-item__color-dropdown"
@@ -31,23 +31,20 @@ const AddColorItem = ( props ) => {
 					aria-expanded={ isOpen }
 					icon="insert"
 					label={ __( 'Add Color' ) }
-				>
-					{ !! props.actionText && __( 'Add Color' ) }
-				</IconButton>
+				/>
 			) }
 			renderContent={ () => (
 				<div>
-					<SketchPicker
-						color={ props.color }
+					<CpbPicker
+						color={ color }
 						onChange={ onChangeColor }
 					/>
 
 					<IconButton
 						icon="admin-appearance"
-						onClick={ props.onAddColor }
+						onClick={ onAddColor }
 						label={ __( 'Add Color' ) }
-						className="blocks-color-item__add-color"
-					>
+						className="blocks-color-item__add-color" >
 						Add Color
 					</IconButton>
 				</div>
