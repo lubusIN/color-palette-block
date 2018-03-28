@@ -16,8 +16,9 @@ import './style.scss';
 /**
  * Register Color Palette Block
  */
-registerBlockType( 'lubus/color-palette-block', {
+registerBlockType( 'lubus/color-palette', {
 	title: __( 'Color Palette' ),
+	description: __( 'Create and share color palettes' ),
 	icon: icons.logo,
 	category: 'layout',
 	attributes: blockAttributes,

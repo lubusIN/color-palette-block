@@ -17,7 +17,7 @@
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @package Color_Palette_Block
+ * @package lubusIN_Color_Palette_Block
  */
 
 // If this file is called directly, abort.
@@ -25,21 +25,21 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! class_exists( 'Color_Palette_Block' ) ) :
+if ( ! class_exists( 'lubusIN_Color_Palette_Block' ) ) :
 /**
- * Color_Palette_Block Class.
+ * lubusIN_Color_Palette_Block Class.
  *
  * Main Class.
  *
  * @since 1.0.0
  */
-class Color_Palette_Block {
+class lubusIN_Color_Palette_Block {
 	/**
 	 * Instance.
 	 *
 	 * @since
 	 * @access private
-	 * @var Color_Palette_Block
+	 * @var lubusIN_Color_Palette_Block
 	 */
 	static private $instance;
 
@@ -60,7 +60,7 @@ class Color_Palette_Block {
 	 *
 	 * @since
 	 * @access public
-	 * @return Color_Palette_Block
+	 * @return lubusIN_Color_Palette_Block
 	 */
 	public static function get_instance() {
 		if ( null === static::$instance ) {
@@ -200,5 +200,5 @@ class Color_Palette_Block {
 
 endif;
 
-Color_Palette_Block::get_instance();
+lubusIN_Color_Palette_Block::get_instance();
 ?>

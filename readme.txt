@@ -13,7 +13,7 @@ Add color palettes you your website
 == Description ==
 >**Disclaimer:** Plugin development is in progress & we are constantly improving the code. If you think code can be improved or have any suggestion feel free to send a PR or [open an issue](https://github.com/lubusIN/color-palette-block/issues).
 
-Quickly share color palettes on your website / block
+Quickly create & share color palettes on your website
 
 ----------
 
