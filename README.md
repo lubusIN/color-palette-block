@@ -38,12 +38,11 @@ If you have any suggestions/feature request that you would like to see in the up
 
 - Simply activate and new block for "Color Palette" will be added to block inserter<br/>
 - Insert block and add your colors<br/>
-- Live preview palette in your editor
-(https://github.com/lubusIN/color-palette-block/blob/master/CHANGELOG.md) for the details.
+- Live preview palette in your editor for the details.
 
 ## Changelog
 
-Please see the [Changelog]
+Please see the [Changelog](CHANGELOG.md) 
 ## Contributing
 
 Thank you for considering contributing to the `Color Palette Block`. You can read the contribution guide lines [here](CONTRIBUTING.md)
