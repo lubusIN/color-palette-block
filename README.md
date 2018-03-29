@@ -1,4 +1,4 @@
-<p align="center"><img src="https://cloud.githubusercontent.com/assets/1039236/24117468/5e8e9174-0dd0-11e7-9f15-33a517549b02.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/1039236/38085557-935d7ce8-336e-11e8-920e-dc2d46610c6a.png"></p>
 
 <p align="center">
 <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/wordpress/plugin/v/color-palette-block.svg" alt="Latest Stable Version"></a> <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/wordpress/v/color-palette-block.svg" alt="Version Tested"></a> <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/wordpress/plugin/dt/color-palette-block.svg" alt="Downloads"></a> <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/wordpress/plugin/r/color-palette-block.svg" alt="Rating"></a> <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/aur/license/yaourt.svg" alt="Licence"></a>
@@ -7,17 +7,17 @@
 
 ## Introduction
 
-Spice up your block with onscorll aniamtion
+Quickly create & share color palettes on your website
 
 ## Screenshot
-![Plugin Screenshot](https://raw.githubusercontent.com/lubusIN/color-palette-block/master/assets/screenshot-1.gif)
+![Plugin Screenshot](https://raw.githubusercontent.com/lubusIN/color-palette-block/master/.wordpress-org/screenshot-1.gif)
 
 
 >**Disclaimer:** Plugin development is in progress & we are constantly improving the code. If you think code can be improved or have any suggestion feel free to send a PR or [open an issue](https://github.com/lubusIN/color-palette-block/issues).
 
 ## Roadmap
 
-- More animation customization
+- More customization
 
 If you have any suggestions/feature request that you would like to see in the upcoming releases , feel free to let us know in the [issues section](https://github.com/lubusIN/color-palette-block/issues)
 
@@ -39,14 +39,14 @@ If you have any suggestions/feature request that you would like to see in the up
 - Simply activate and new block for "Color Palette" will be added to block inserter<br/>
 - Insert block and add your colors<br/>
 - Live preview palette in your editor
+(https://github.com/lubusIN/color-palette-block/blob/master/CHANGELOG.md) for the details.
 
 ## Changelog
 
-Please see the [Changelog](https://github.com/lubusIN/color-palette-block/blob/master/CHANGELOG.md) for the details.
-
+Please see the [Changelog]
 ## Contributing
 
-Thank you for considering contributing to the `WP Query Console`. You can read the contribution guide lines [here](CONTRIBUTING.md)
+Thank you for considering contributing to the `Color Palette Block`. You can read the contribution guide lines [here](CONTRIBUTING.md)
 
 Check the development tasklist [here](https://github.com/lubusIN/color-palette-block/projects/1) if something interest you or suggest something [here](https://github.com/lubusIN/color-palette-block/issues)
 
@@ -56,7 +56,7 @@ If you discover any security related issues, please email to [ajit@lubus.in](mai
 
 ## Credits
 
-Maintained by [Ajit Bohra](http://https://twitter.com/ajitbohra)
+[Ajit Bohra](http://https://twitter.com/ajitbohra)
 
 ##  Support Us
 [LUBUS](http://lubus.in) is a web design agency based in Mumbai, India.

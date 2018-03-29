@@ -8,7 +8,7 @@ Stable tag: 1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Add color palettes you your website
+Quickly create & share color palettes on your website
 
 == Description ==
 >**Disclaimer:** Plugin development is in progress & we are constantly improving the code. If you think code can be improved or have any suggestion feel free to send a PR or [open an issue](https://github.com/lubusIN/color-palette-block/issues).
@@ -48,6 +48,6 @@ If you have any suggestions/Feature request that you would like to see in the up
 
 ***v1.0***
 
-Released
+Released on 29th March 2018
 
  - Initial plugin release
