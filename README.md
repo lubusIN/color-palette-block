@@ -5,6 +5,10 @@
 <a href="https://github.com/lubusin/color-palette-block/blob/master/CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs"></a>
 </p>
 
+<a href="https://lubus.in/">
+<img src="https://user-images.githubusercontent.com/1039236/40877801-3fa8ccf6-66a4-11e8-8f42-19ed4e883ce9.png" />
+</a>
+
 ## Introduction
 
 Quickly create & share color palettes on your website
@@ -57,7 +61,29 @@ If you discover any security related issues, please email to [ajit@lubus.in](mai
 
 [Ajit Bohra](http://https://twitter.com/ajitbohra)
 
+## Other Gutenberg Goodies
+<table width="100%">
+	<tr>
+		<td width="33.33%">
+		<a href="https://github.com/lubusIN/dummynator">
+			<img src="https://raw.githubusercontent.com/lubusIN/dummynator/master/.wordpress-org/logo.png" alt="Dummynator" />
+		</a>
+		</td>
+		<td width="33.33%">
+			<a href="https://github.com/lubusIN/block-background">
+			<img src="https://user-images.githubusercontent.com/1039236/38365718-068c190e-38fb-11e8-8ada-a4a50cfd95d1.png" alt="Block Background"/>
+			</a>
+		</td>
+		<td width="33.33%"><strong><i>Coming Soon ...</i></strong></td>
+	</tr>
+</table>
+
 ##  Support Us
+
+<a href="https://www.patreon.com/lubus">
+<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become A Patron"/>
+</a>
+
 [LUBUS](http://lubus.in) is a web design agency based in Mumbai, India.
 
 You can pledge on [patreon](https://www.patreon.com/lubus) to support the development & maintenance of various [opensource](https://github.com/lubusIN/) stuff we are building.
