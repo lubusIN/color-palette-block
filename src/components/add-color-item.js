@@ -18,7 +18,7 @@ import { IconButton, Dropdown } from "@wordpress/components";
  */
 const AddColorItem = props => {
   // Component props
-  const { color, onPickColor, onAddColor } = props;
+  const { color, onPickColor, onAddColor, className } = props;
 
   // Event handler
   const onChangeColor = colorSelected => onPickColor(colorSelected);
@@ -31,11 +31,15 @@ const AddColorItem = props => {
       headerTitle={__("select Color")}
       renderToggle={({ isOpen, onToggle }) => (
         <IconButton
+          isLarge
+          className={className}
           onClick={onToggle}
           aria-expanded={isOpen}
           icon="insert"
           label={__("Add Color")}
-        />
+        >
+          {__("Add Color")}
+        </IconButton>
       )}
       renderContent={({ onClose }) => {
         const onSelect = () => {
@@ -48,12 +52,13 @@ const AddColorItem = props => {
             <ColorPicker color={color} onChange={onChangeColor} />
 
             <IconButton
-              icon="admin-appearance"
+              isLarge
+              icon="plus"
               onClick={onSelect}
-              label={__("Add Color")}
-              className="blocks-color-item__add-color"
+              label={__("Insert Color")}
+              className="blocks-color-item__insert-button"
             >
-              Add Color
+              {__("Insert Color")}
             </IconButton>
           </div>
         );

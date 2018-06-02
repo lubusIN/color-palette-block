@@ -7,7 +7,7 @@ import { filter } from "lodash";
  * WordPress Dependencies
  */
 import { __ } from "@wordpress/i18n";
-import { Component } from "@wordpress/element";
+import { Component, Fragment } from "@wordpress/element";
 import { Placeholder } from "@wordpress/components";
 
 /**
@@ -15,6 +15,7 @@ import { Placeholder } from "@wordpress/components";
  */
 import ColorItem from "../components/color-item";
 import AddColorItem from "../components/add-color-item";
+import icons from "../data/icons";
 
 /**
  * Color Palette Editor UI Component
@@ -102,7 +103,7 @@ class ColorEditor extends Component {
       return (
         <Placeholder
           key="cpb-placeholder"
-          icon="admin-appearance"
+          icon={icons.logo}
           label={__("Colors")}
           instructions={__("Add colors to create your palette")}
         >
@@ -110,36 +111,38 @@ class ColorEditor extends Component {
             color={pickedColor}
             onAddColor={this.onAddColor}
             onPickColor={this.onPickColor}
+            items={false}
           />
         </Placeholder>
       );
     }
 
     return (
-      <ul key="cpb-colors" className={`${className} cpb-colors`}>
-        {// Display colors stored in attributes
-        colors.map((color, index) => (
-          <ColorItem
-            key={index}
-            code={color.code}
-            displayStyle={style}
-            isSelected={isSelected && selectedColor === index}
-            onSelect={e => this.onSelectColor(index, e)}
-            onRemove={e => this.onRemoveColor(index, e)}
-          />
-        ))}
+      <Fragment>
+        <ul key="cpb-colors" className={`${className} cpb-colors`}>
+          {// Display colors stored in attributes
+          colors.map((color, index) => (
+            <ColorItem
+              key={index}
+              code={color.code}
+              displayStyle={style}
+              isSelected={isSelected && selectedColor === index}
+              onSelect={e => this.onSelectColor(index, e)}
+              onRemove={e => this.onRemoveColor(index, e)}
+            />
+          ))}
+        </ul>
 
         {// If block is selected display add color button
         isSelected && (
-          <li className="cpb-add-color">
-            <AddColorItem
-              color={pickedColor}
-              onAddColor={this.onAddColor}
-              onPickColor={this.onPickColor}
-            />
-          </li>
+          <AddColorItem
+            className="blocks-color-item__full-button"
+            color={pickedColor}
+            onAddColor={this.onAddColor}
+            onPickColor={this.onPickColor}
+          />
         )}
-      </ul>
+      </Fragment>
     );
   }
 }

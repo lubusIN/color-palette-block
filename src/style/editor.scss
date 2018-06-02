@@ -1,0 +1,55 @@
+ul.cpb-colors{
+	.is-Selected{
+		outline: 3px solid #00a0d2;
+		outline-offset: -3px;
+	}
+
+	.blocks-color-item__inline-menu {
+		padding: 2px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: #00a0d2;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+		z-index: 20;
+
+		.components-button {
+			color: #ffffff;
+		}
+	}
+
+	.blocks-color-item__remove {
+		padding: 0;
+	}
+}
+
+/* Fix iconbutton icon alignment */
+.button .dashicon {
+	vertical-align: middle;
+	margin-bottom: 3px;
+	margin-right: 3px;
+}
+
+.button.blocks-color-item__full-button {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+	min-height: 100px;
+	width: 100%;
+    height: 100%;
+}
+
+.button.blocks-color-item__insert-button {
+	width: 100%;
+	border: none;
+	box-shadow: none;
+}
+
+.sketch-picker{
+	min-width: fit-content;
+}
+
