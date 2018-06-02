@@ -166,8 +166,9 @@ class lubusIN_Color_Palette_Block {
 	 * @return void
 	 */
 	public function register_color_palette(){
-		$block_js = 'build/colors.js';
-		$block_css = 'build/colors.css';
+		$block_js   = 'build/script.js';
+		$block_css  = 'build/style.css';
+		$editor_css = 'build/editor.css';
 
 		// Script
 		wp_register_script(
@@ -180,19 +181,26 @@ class lubusIN_Color_Palette_Block {
 			filemtime( CPB_PLUGIN_DIR . $block_js )
 		);
 
-		// Style
+		// Common
 		wp_register_style(
 			'color-palette-block',
 			CPB_PLUGIN_URL . $block_css,
-			array(
-				'wp-blocks',
-			),
+			array(),
 			filemtime(CPB_PLUGIN_DIR . $block_css)
+		);
+
+		// Editor
+		wp_register_style(
+			'color-palette-block-editor',
+			CPB_PLUGIN_URL . $editor_css,
+			array(),
+			filemtime(CPB_PLUGIN_DIR . $editor_css)
 		);
 
 		// Register block type
 		register_block_type('lubus/color-palette-block', array(
 			'style'         => 'color-palette-block',
+			'editor_style'         => 'color-palette-block-editor',
 			'script'        => 'color-palette-block-js',
 		));
 	}
