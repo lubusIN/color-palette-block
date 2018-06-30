@@ -24,14 +24,18 @@ ul.cpb-colors{
 	}
 }
 
-/* Fix iconbutton icon alignment */
-.button .dashicon {
+.block-color-item__color-popover .components-popover__content{
+	max-height: fit-content !important;
+}
+
+/* Fix icon-button icon alignment */
+.components-button .dashicon {
 	vertical-align: middle;
 	margin-bottom: 3px;
 	margin-right: 3px;
 }
 
-.button.blocks-color-item__full-button {
+.components-button.blocks-color-item__full-button {
 	display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,10 +47,15 @@ ul.cpb-colors{
     height: 100%;
 }
 
-.button.blocks-color-item__insert-button {
+.components-button.blocks-color-item__full-button:hover {
 	width: 100%;
-	border: none;
+	border: 1px solid #999;
 	box-shadow: none;
+}
+
+.components-button.blocks-color-item__insert-button {
+	display: block;
+	margin: auto;
 }
 
 .sketch-picker{

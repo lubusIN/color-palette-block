@@ -4,7 +4,7 @@ Donate link: http://www.lubus.in
 Tags: gutenberg, block, color, palette
 Requires at least: 3.0.1
 Tested up to:  4.9.4
-Stable tag: 1.0
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -46,7 +46,15 @@ If you have any suggestions/Feature request that you would like to see in the up
 
 == Changelog ==
 
-***v1.0***
+***v1.1.0***
+
+Released on 29th June 2018
+
+ - Compatibility with gutenberg 3.1.x
+ - ES import for WP depenedencies
+ - Minor UI tweaks
+
+***v1.0.0***
 
 Released on 29th March 2018
 

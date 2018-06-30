@@ -6,14 +6,14 @@
  * Description: Add color palettes to your website
  * Author: LUBUS
  * Author URI: https://lubus.in
- * Version: 1.0
+ * Version: 1.1.0
  * Text Domain: cpb
  * Domain Path: /languages
  * GitHub Plugin URI: https://github.com/lubusIN/color-palette-block
  * Tags: gutenberg, block, animation
  * Requires at least: 3.0.1
  * Tested up to:  4.9.4
- * Stable tag: 1.0
+ * Stable tag: 1.1.0
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
@@ -82,35 +82,6 @@ class lubusIN_Color_Palette_Block {
 	}
 
 	/**
-	 * Throw error on object clone
-	 *
-	 * The whole idea of the singleton design pattern is that there is a single
-	 * object, therefore we don't want the object to be cloned.
-	 *
-	 * @since  1.0
-	 * @access protected
-	 *
-	 * @return void
-	 */
-	public function __clone() {
-		// Cloning instances of the class is forbidden.
-		cpb_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'cpb' ), '1.0' );
-	}
-
-	/**
-	 * Disable unserializing of the class
-	 *
-	 * @since  1.0
-	 * @access protected
-	 *
-	 * @return void
-	 */
-	public function __wakeup() {
-		// Unserializing instances of the class is forbidden.
-		cpb_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'cpb' ), '1.0' );
-	}
-
-	/**
 	 * Setup plugin constants
 	 *
 	 * @since  1.0
@@ -176,6 +147,8 @@ class lubusIN_Color_Palette_Block {
 			CPB_PLUGIN_URL . $block_js,
 			array(
 				'wp-blocks',
+				'wp-element',
+				'wp-components',
 				'wp-i18n',
 			),
 			filemtime( CPB_PLUGIN_DIR . $block_js )

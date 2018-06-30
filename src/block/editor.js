@@ -40,9 +40,9 @@ class ColorEditor extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     // Component Lifecycle: Deselect color when deselecting the block
-    if (!nextProps.isSelected && this.props.isSelected) {
+    if (!this.props.isSelected && prevProps.isSelected) {
       this.setState({
         selectedColor: null
       });

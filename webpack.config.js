@@ -68,7 +68,7 @@ const config = {
   output: {
     filename: "build/script.js",
     path: __dirname,
-    library: ["color-palette-block", "[name]"],
+    library: ["cpb", "[name]"],
     libraryTarget: "this"
   },
   resolve: {
