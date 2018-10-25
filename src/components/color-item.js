@@ -17,7 +17,7 @@ import { IconButton } from "@wordpress/components";
  */
 const ColorItem = props => {
   // Component props
-  const { isSelected, code, displayStyle, onSelect, onRemove } = props;
+  const { isSelected, code, onSelect, onRemove } = props;
 
   // Event handler
   const onColorSelect = () => {
@@ -28,7 +28,7 @@ const ColorItem = props => {
 
   return (
     <li
-      className={`cpb-${displayStyle} ${classnames({
+      className={`cpb-card ${classnames({
         "is-Selected": isSelected
       })}`}
       onClick={onColorSelect}

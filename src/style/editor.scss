@@ -1,4 +1,4 @@
-ul.cpb-colors{
+ul.wp-block-lubus-color-palette{
 	.is-Selected{
 		outline: 3px solid #00a0d2;
 		outline-offset: -3px;
@@ -31,8 +31,6 @@ ul.cpb-colors{
 /* Fix icon-button icon alignment */
 .components-button .dashicon {
 	vertical-align: middle;
-	margin-bottom: 3px;
-	margin-right: 3px;
 }
 
 .components-button.blocks-color-item__full-button {

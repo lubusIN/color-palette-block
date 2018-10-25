@@ -43,6 +43,7 @@ const externals = {
 // WordPress dependences
 const wpDependencies = [
   "components",
+  "i18n",
   "element",
   "blocks",
   "editor",
@@ -53,7 +54,7 @@ const wpDependencies = [
   "i18n",
   "editPost",
   "plugins",
-  "apiRequest"
+  "apiFetch"
 ];
 wpDependencies.forEach(wpDependency => {
   externals["@wordpress/" + wpDependency] = {

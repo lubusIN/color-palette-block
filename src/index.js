@@ -23,6 +23,11 @@ registerBlockType("lubus/color-palette", {
   icon: icons.logo,
   category: "layout",
   attributes: blockAttributes,
+  styles: [
+    { name: "polaroid", label: __("Polaroid"), isDefault: true },
+    { name: "circle", label: __("Circle") },
+    { name: "droplet", label: __("Droplet") }
+  ],
   edit: ColorEditor,
   save: ColorPalette
 });

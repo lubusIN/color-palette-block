@@ -96,7 +96,7 @@ class ColorEditor extends Component {
   render() {
     const { selectedColor, pickedColor } = this.state;
     const { attributes, isSelected, className } = this.props;
-    const { colors, style } = attributes;
+    const { colors } = attributes;
 
     // Display placeholder if palette is empty
     if (colors.length === 0) {
@@ -119,13 +119,12 @@ class ColorEditor extends Component {
 
     return (
       <Fragment>
-        <ul key="cpb-colors" className={`${className} cpb-colors`}>
+        <ul className={className}>
           {// Display colors stored in attributes
           colors.map((color, index) => (
             <ColorItem
               key={index}
               code={color.code}
-              displayStyle={style}
               isSelected={isSelected && selectedColor === index}
               onSelect={e => this.onSelectColor(index, e)}
               onRemove={e => this.onRemoveColor(index, e)}
