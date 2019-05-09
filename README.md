@@ -11,7 +11,7 @@
 
 ## Introduction
 
-Quickly create & share color palettes on your website
+Helps you quickly create & share color palettes on your website.
 
 ## Screenshot
 ![Plugin Screenshot](https://raw.githubusercontent.com/lubusIN/color-palette-block/master/.wordpress-org/screenshot-1.gif)
@@ -22,9 +22,6 @@ Quickly create & share color palettes on your website
 ## Roadmap
 
 - More customization
-
-If you have any suggestions/feature request that you would like to see in the upcoming releases , feel free to let us know in the [issues section](https://github.com/lubusIN/color-palette-block/issues)
-
 
 ## Installation
 
@@ -47,11 +44,16 @@ If you have any suggestions/feature request that you would like to see in the up
 ## Changelog
 
 Please see the [Changelog](CHANGELOG.md) 
+
+## Feedback / Suggestions
+
+If you have any suggestions/feature request that you would like to see in the upcoming releases, feel free to let us know in the [issues section](https://github.com/lubusIN/color-palette-block/issues)
+
 ## Contributing
 
-Thank you for considering contributing to the `Color Palette Block`. You can read the contribution guide lines [here](CONTRIBUTING.md)
+Thank you in advance if you wish to contribute to the `Color Palette Block`. You can read the contribution guide lines [here](CONTRIBUTING.md)
 
-Check the development tasklist [here](https://github.com/lubusIN/color-palette-block/projects/1) if something interest you or suggest something [here](https://github.com/lubusIN/color-palette-block/issues)
+Check the development tasklist [here](https://github.com/lubusIN/color-palette-block/projects/1), if something interests you or want to suggest something click [here](https://github.com/lubusIN/color-palette-block/issues)
 
 ## Security
 
@@ -86,8 +88,8 @@ If you discover any security related issues, please email to [ajit@lubus.in](mai
 
 [LUBUS](http://lubus.in) is a web design agency based in Mumbai, India.
 
-You can pledge on [patreon](https://www.patreon.com/lubus) to support the development & maintenance of various [opensource](https://github.com/lubusIN/) stuff we are building.
+You can pledge on [patreon](https://www.patreon.com/lubus) to support the development & maintenance of various [opensource](https://github.com/lubusIN/) stuffs we are building.
 
 ## License
 
-'Color Palette' is open-sourced software licensed under the [GPL 3.0 license](LICENSE)
+'Color Palette' is an open-source software licensed under the [GPL 3.0 license](LICENSE)
