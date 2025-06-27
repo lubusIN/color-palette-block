@@ -5,15 +5,8 @@
 <a href="https://github.com/lubusin/color-palette-block/blob/master/CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs"></a>
 </p>
 
-<a href="https://lubus.in/">
-<img src="https://user-images.githubusercontent.com/1039236/40877801-3fa8ccf6-66a4-11e8-8f42-19ed4e883ce9.png" />
-</a>
-
-## Introduction
-
 Helps you quickly create & share color palettes on your website.
 
-## Screenshot
 ![Plugin Screenshot](https://raw.githubusercontent.com/lubusIN/color-palette-block/master/.wordpress-org/screenshot-1.gif)
 
 
@@ -80,15 +73,13 @@ If you discover any security related issues, please email to [ajit@lubus.in](mai
 	</tr>
 </table>
 
-##  Support Us
+## Meet Your Artisans
 
-<a href="https://www.patreon.com/lubus">
-<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become A Patron"/>
+[LUBUS](http://lubus.in) is a web design agency based in Mumbai.
+
+<a href="https://cal.com/lubus">
+<img src="https://raw.githubusercontent.com/lubusIN/.github/refs/heads/main/profile/banner.png" />
 </a>
-
-[LUBUS](http://lubus.in) is a web design agency based in Mumbai, India.
-
-You can pledge on [patreon](https://www.patreon.com/lubus) to support the development & maintenance of various [opensource](https://github.com/lubusIN/) stuffs we are building.
 
 ## License
 
