@@ -19,7 +19,7 @@ import "./style/editor.scss";
  */
 registerBlockType("lubus/color-palette", {
   title: __("Color Palette"),
-  description: __("Create and share color palettes"),
+  description: __("Create and share color palettes test"),
   icon: icons.logo,
   category: "layout",
   attributes: blockAttributes,
