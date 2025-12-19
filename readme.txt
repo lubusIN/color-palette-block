@@ -1,33 +1,36 @@
 === Color Palette ===
-Contributors: lubus,ajitbohra
+Contributors: lubus,ajitbohra, punitv342
 Donate link: http://www.lubus.in
 Tags: gutenberg, block, color, palette
 Requires at least: 3.0.1
-Tested up to:  4.9.4
-Stable tag: 1.1.0
+Tested up to:  6.9.4
+Stable tag: 2.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Quickly create & share color palettes on your website
+Build and share beautiful color palettes with multiple display styles and easy color code copying.
 
 == Description ==
->**Disclaimer:** Plugin development is in progress & we are constantly improving the code. If you think code can be improved or have any suggestion feel free to send a PR or [open an issue](https://github.com/lubusIN/color-palette-block/issues).
 
-Quickly create & share color palettes on your website
+The Color Palette block allows you to create, organize, and share color palettes with ease. Perfect for designers, developers, and anyone working with colors.
 
-----------
+**Key Features:**
 
-**Usage**
+* **Multiple Display Styles**: Choose from Square, Polaroid, Circle, and Droplet display styles
+* **Color Code Formats**: Copy colors in HEX, RGB, HSL, and CSS Variable formats
+* **Interactive Color Picker**: Easy-to-use color selection with live preview
+* **Theme Integration**: Import colors directly from your theme's color palette
+* **Random Generation**: Create surprise palettes with auto-generated color names
+* **Customizable Layout**: Adjust sizing and display options
+* **Responsive Design**: Looks great on all devices
+* **Copy to Clipboard**: One-click copying of color codes in various formats
 
-- Simply activate and new block for "Color Palette" will be added to block inserter<br/>
-- Insert block and add your colors<br/>
-- Live preview palette in your editor
-
-**Roadmap**
-
- - More customization options
-
-If you have any suggestions/Feature request that you would like to see in the upcoming releases , feel free to let us know in the [issues section](https://github.com/lubusIN/color-palette-block/issues)
+**Perfect for:**
+* Design systems and style guides
+* Brand color documentation
+* Client presentations
+* Development reference
+* Color inspiration boards
 
 == Installation ==
 ***From your WordPress dashboard***
@@ -40,11 +43,53 @@ If you have any suggestions/Feature request that you would like to see in the up
  2. Upload the `color-palette-block` directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...)
  3. Activate `Color Palette` from your Plugins page.
 
+== Frequently Asked Questions ==
+
+= How do I add colors to my palette? =
+
+You can add colors in several ways:
+- Click the "Add Color" button in the block toolbar
+- Use the + button that appears at the end of your color grid
+- Import theme colors with the "Theme Colors" button
+- Generate random colors with "Surprise Me"
+
+= What color formats can I copy? =
+
+You can copy colors in HEX (#ffffff), RGB (rgb(255,255,255)), HSL (hsl(0,0%,100%)), and CSS Variable (--color-name) formats.
+
+= Can I change how the colors are displayed? =
+
+Yes! You can choose from four display styles:
+- Square (default): Clean rectangular swatches
+- Polaroid: Instant photo-style with white frames
+- Circle: Circular color swatches
+- Droplet: Teardrop-shaped swatches
+
+= Are color names automatically generated? =
+
+Yes! When adding new colors, the block automatically generates descriptive color names based on the color values. You can always edit these names to your preference.
+
+= Is the block responsive? =
+
+Absolutely! The color palette automatically adapts to different screen sizes and looks great on mobile devices.
+
 == Screenshots ==
 
 1. Plugin in action
 
 == Changelog ==
+
+***v2.0.0***
+
+ - Multiple display styles (Square, Polaroid, Circle, Droplet)
+ -  Color code copying in multiple formats (HEX, RGB, HSL, CSS)
+ - Theme color integration
+ - Random palette generation with intelligent color naming
+ - Responsive design
+ - Interactive color picker with popover interface
+ - Customizable sizing options
+ - Auto-generated color names based on color science
+ - Confirmation dialogs for destructive actions
 
 ***v1.1.0***
 

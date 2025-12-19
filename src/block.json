@@ -1,0 +1,83 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lubus/color-palette",
+	"version": "2.0.0",
+	"title": "Color Palette",
+	"category": "design",
+	"icon": "art",
+	"description": "Build and share beautiful color palettes with multiple display styles and easy color code copying.",
+	"example": {
+		"attributes": {
+			"colors": [
+				{
+					"id": "1",
+					"color": "#ff6b6b",
+					"name": "Coral Red"
+				},
+				{
+					"id": "2",
+					"color": "#4ecdc4",
+					"name": "Teal"
+				},
+				{
+					"id": "3",
+					"color": "#45b7d1",
+					"name": "Sky Blue"
+				},
+				{
+					"id": "4",
+					"color": "#96ceb4",
+					"name": "Mint Green"
+				}
+			],
+			"className": "is-style-circle"
+		}
+	},
+	"styles": [
+		{
+			"name": "default",
+			"label": "Square",
+			"isDefault": true
+		},
+		{
+			"name": "polaroid",
+			"label": "Polaroid"
+		},
+		{
+			"name": "circle",
+			"label": "Circle"
+		},
+		{
+			"name": "droplet",
+			"label": "Droplet"
+		},
+		{
+			"name": "palette",
+			"label": "Palette"
+		}
+	],
+	"attributes": {
+		"colors": {
+			"type": "array",
+			"default": []
+		},
+		"showColorNames": {
+			"type": "boolean",
+			"default": true
+		},
+		"showColorCodes": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"textdomain": "color-palette-block-wp",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

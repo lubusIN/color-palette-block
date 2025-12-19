@@ -1,0 +1,526 @@
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+/* Hover border for color items using admin theme accent color */
+.color-item:hover {
+	outline: 2px solid var(--wp-admin-theme-color, #2271b1) !important;
+	outline-offset: 2px !important;
+	border-radius: 4px;
+}
+
+/* Special handling for polaroid style */
+.wp-block-lubus-color-palette.is-style-polaroid .color-item:hover {
+	outline-offset: 4px !important; /* Account for white frame */
+}
+
+/* Special handling for droplet style */
+.wp-block-lubus-color-palette.is-style-droplet .color-item:hover {
+	outline-offset: 4px !important; /* Account for rotated shape */
+}
+
+/* Special handling for palette style - maintain border radius and show overflow */
+.wp-block-lubus-color-palette.is-style-palette .color-item:hover {
+	outline-offset: 1px !important; /* Minimal outline for clean appearance */
+	border-radius: 8px !important; /* Maintain the palette style border radius */
+	overflow: visible !important; /* Ensure delete button is visible */
+}
+
+/* Special handling for circle style */
+.wp-block-lubus-color-palette.is-style-circle .color-item:hover {
+	outline-offset: 2px !important; /* Standard outline for circle style */
+}
+
+.remove-color-btn {
+	position: absolute !important;
+	top: 0; /* Align perfectly with color-item top edge */
+	right: 0; /* Align perfectly with color-item right edge */
+	width: 20px !important;
+	height: 20px !important;
+	min-width: 20px !important;
+	padding: 0 !important;
+	background: rgba(220, 50, 50, 0.9) !important;
+	color: white !important;
+	border-radius: 50% !important; /* Fully rounded circle */
+	border: none !important;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+	opacity: 0;
+	z-index: 15;
+	cursor: pointer;
+	backdrop-filter: blur(2px);
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	font-size: 16px !important; /* Slightly bigger icon */
+	font-weight: bold !important;
+	line-height: 1 !important;
+	transform: translate(50%, -50%); /* Perfect corner positioning */
+
+	&::before {
+		content: '×';
+		display: block;
+		color: white;
+		font-size: 16px; /* Match larger size */
+		font-weight: 900;
+		line-height: 1;
+		text-align: center;
+	}
+
+	.color-item:hover & {
+		opacity: 1;
+	}
+
+	/* Completely hide any SVG icons */
+	svg {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		width: 0 !important;
+		height: 0 !important;
+		pointer-events: none !important;
+	}
+
+	/* Hide any WordPress icon components */
+	.dashicon,
+	.components-icon {
+		display: none !important;
+		visibility: hidden !important;
+	}
+
+	&:hover {
+		background: rgba(170, 0, 0, 0.95) !important;
+		transform: translate(50%, -50%) scale(1.05);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+	}
+
+	&:active {
+		transform: translate(50%, -50%) scale(0.95);
+	}
+}
+
+/* Special handling for palette style delete button */
+.wp-block-lubus-color-palette.is-style-palette {
+	.color-item {
+		/* Ensure overflow is visible on hover to show delete button */
+		&:hover {
+			overflow: visible !important;
+			z-index: 10; /* Bring to front to ensure visibility */
+		}
+	}
+
+	.remove-color-btn {
+		/* Ensure proper positioning for palette style */
+		z-index: 20; /* Higher z-index for palette style */
+		position: absolute !important;
+		top: -1px; /* Account for border */
+		right: -1px; /* Account for border */
+	}
+}
+
+/* Remove style-specific border radius overrides since all delete buttons are now circular */
+.wp-block-lubus-color-palette.is-style-circle .remove-color-btn,
+.wp-block-lubus-color-palette.is-style-droplet .remove-color-btn,
+.wp-block-lubus-color-palette.is-style-polaroid .remove-color-btn,
+.wp-block-lubus-color-palette.is-style-default .remove-color-btn,
+.wp-block-lubus-color-palette.is-style-palette .remove-color-btn,
+.wp-block-lubus-color-palette:not([class*="is-style-"]) .remove-color-btn {
+	border-radius: 50% !important; /* All delete buttons are now circular */
+}
+
+/* Add color placeholder styles - match regular color items */
+.color-item--add {
+	cursor: pointer !important;
+	width: 120px; /* Fixed width to match other items */
+	box-sizing: border-box;
+	/* Remove all styling from default square style placeholder parent */
+	border: none !important;
+	border-radius: 4px;
+	background: transparent !important;
+	box-shadow: none !important;
+	overflow: hidden; /* Prevent icon overflow */
+
+	&:hover {
+		transform: translateY(-2px) scale(1.02);
+		/* Remove parent hover styling for default square style */
+		border: none !important;
+		background: transparent !important;
+		box-shadow: none !important;
+
+		.color-swatch--add {
+			background: #fff !important;
+			border-color: var(--wp-admin-theme-color, #2271b1) !important;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+			color: var(--wp-admin-theme-color, #2271b1) !important;
+
+			.add-color-icon {
+				transform: scale(1.1);
+				color: var(--wp-admin-theme-color, #2271b1) !important;
+
+				svg {
+					fill: var(--wp-admin-theme-color, #2271b1) !important;
+				}
+			}
+		}
+
+		.add-color-label {
+			color: var(--wp-admin-theme-color, #2271b1) !important;
+		}
+	}
+
+	.color-swatch--add {
+		/* Apply styling to swatch for default square style */
+		background: #fff !important;
+		border: 1px solid #e0e0e0 !important;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+		color: #1e1e1e !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		position: relative !important;
+		overflow: hidden !important; /* Prevent icon overflow */
+		width: 118px; /* Account for border */
+		height: 118px; /* Account for border - square dimensions */
+		box-sizing: border-box;
+
+		.add-color-icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #1e1e1e;
+			line-height: 1;
+			text-align: center;
+			width: 24px;
+			height: 24px;
+			max-width: 24px;
+			max-height: 24px;
+			flex-shrink: 0;
+
+			svg {
+				fill: #1e1e1e;
+				width: 24px;
+				height: 24px;
+				max-width: 24px;
+				max-height: 24px;
+				flex-shrink: 0;
+			}
+		}
+	}
+
+	.add-color-label {
+		margin-top: 0.5rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: #1e1e1e;
+		text-align: center;
+		width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+/* Fix plus icon rotation in droplet style */
+.wp-block-lubus-color-palette.is-style-droplet {
+	.color-item--add {
+		/* Clean styling - remove all borders and shadows */
+		border: none !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		overflow: visible; /* Allow droplet to extend */
+
+		&:hover {
+			/* Clean hover styling */
+			border: none !important;
+			background: transparent !important;
+			box-shadow: none !important;
+			transform: translateY(-2px); /* Remove scale on hover */
+
+			.color-swatch--add {
+				/* Apply specified border and shadow */
+				border: 1px solid #e0e0e0 !important;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, .08) !important;
+				background: #fff !important;
+				transform: rotate(135deg) scale(1.02) !important; /* Maintain rotation with scale */
+			}
+
+			.add-color-icon {
+				color: var(--wp-admin-theme-color, #2271b1) !important;
+
+				svg {
+					fill: var(--wp-admin-theme-color, #2271b1) !important;
+				}
+			}
+
+			.add-color-label {
+				color: var(--wp-admin-theme-color, #2271b1) !important;
+			}
+		}
+
+		.color-swatch--add {
+			border-radius: 50% 50% 50% 0 !important; /* Proper droplet shape */
+			transform: rotate(135deg) !important;
+			height: 100px !important; /* Square dimensions for proper droplet */
+			width: 100px !important;
+			/* Apply specified border and shadow for droplet */
+			border: 1px solid #e0e0e0 !important;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, .08) !important;
+			background: #fff !important;
+			margin: 10px auto !important;
+
+			.add-color-icon {
+				transform: rotate(-135deg) !important; /* Counter-rotate to keep plus upright */
+
+				svg {
+					/* No additional transform needed since parent handles rotation */
+				}
+			}
+		}
+
+		.add-color-label {
+			margin-top: 1.5rem; /* Account for droplet positioning */
+			color: #1e1e1e !important;
+		}
+	}
+}
+
+/* Circle style for add button - remove border and shadow from parent */
+.wp-block-lubus-color-palette.is-style-circle {
+	.color-item--add {
+		/* Remove border and shadow from parent */
+		border: none !important;
+		background: transparent !important;
+		box-shadow: none !important;
+
+		&:hover {
+			/* Remove border and shadow from parent on hover */
+			border: none !important;
+			background: transparent !important;
+			box-shadow: none !important;
+			transform: translateY(-2px); /* Remove scale on hover */
+
+			.color-swatch--add {
+				box-shadow: 0 4px 8px rgba(0, 0, 0, .12) !important;
+				border-color: #ccc !important;
+			}
+
+			.add-color-label {
+				color: var(--wp-admin-theme-color, #2271b1) !important;
+			}
+
+			.add-color-icon {
+				color: var(--wp-admin-theme-color, #2271b1) !important;
+
+				svg {
+					fill: var(--wp-admin-theme-color, #2271b1) !important;
+				}
+			}
+		}
+
+		.color-swatch--add {
+			border-radius: 50%;
+			height: 118px; /* Perfect circle dimensions */
+			/* Clean border and shadow for circle add button - only on swatch */
+			border: 1px solid #e0e0e0 !important;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, .08) !important;
+			background: #fff !important;
+		}
+
+		.add-color-label {
+			color: #1e1e1e !important;
+		}
+	}
+}
+
+/* Polaroid style for add button */
+.wp-block-lubus-color-palette.is-style-polaroid {
+	.color-item--add {
+		/* Remove all styling from placeholder item */
+		border: none !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		height: auto; /* Let swatch determine height */
+
+		&:hover {
+			/* Remove all styling from placeholder item on hover */
+			border: none !important;
+			background: transparent !important;
+			box-shadow: none !important;
+			transform: translateY(-2px); /* Keep transform */
+
+			.color-swatch--add {
+				box-shadow:
+					rgba(0, 0, 0, 0.2) 0px 8px 24px,
+					rgb(255, 255, 255) 0px 0px 0px 8px inset,
+					rgb(255, 255, 255) 0px -25px 0px 0px inset,
+					rgb(0, 0, 0, 0.15) 0px -26px 0px 0px inset,
+					var(--wp-admin-theme-color, #2271b1) 0px 0px 0px 9px inset !important;
+			}
+
+			.add-color-label {
+				color: var(--wp-admin-theme-color, #2271b1) !important;
+			}
+		}
+
+		.color-swatch--add {
+			/* Apply polaroid styling with complex box-shadow for realistic instant photo effect */
+			box-shadow:
+				rgba(0, 0, 0, 0.15) 0px 4px 16px,
+				rgb(255, 255, 255) 0px 0px 0px 8px inset,
+				rgb(255, 255, 255) 0px -25px 0px 0px inset,
+				rgb(0, 0, 0, 0.1) 0px -26px 0px 0px inset,
+				rgba(0, 0, 0, 0.1) 0px 0px 0px 9px inset !important;
+			border: none !important;
+			border-radius: 6px !important;
+			background: transparent !important;
+			height: 140px !important; /* Polaroid height */
+			width: 118px !important; /* Account for inset shadow frame */
+		}
+
+		.add-color-label {
+			color: #1e1e1e !important;
+		}
+	}
+}
+
+/* Palette style for add button - match color item structure */
+.wp-block-lubus-color-palette.is-style-palette {
+	.color-item--add {
+		background: #fff !important; /* Force white background */
+		border: 1px solid #e0e0e0 !important; /* Force border */
+		border-radius: 8px !important; /* Force border radius */
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important; /* Force box shadow */
+		width: auto; /* Allow flexible width for palette style */
+		overflow: hidden;
+		padding: 0; /* Ensure no padding */
+
+		&:hover {
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+			border-color: var(--wp-admin-theme-color, #2271b1) !important;
+			transform: translateY(-1px);
+			border-radius: 8px !important;
+			background: #fff !important; /* Maintain background on hover */
+
+			.add-color-label {
+				color: var(--wp-admin-theme-color, #2271b1) !important;
+			}
+
+			.color-swatch--add {
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12) !important; /* Enhanced bottom shadow border on hover */
+			}
+
+			.add-color-icon {
+				color: var(--wp-admin-theme-color, #2271b1) !important;
+
+				svg {
+					fill: var(--wp-admin-theme-color, #2271b1) !important;
+				}
+			}
+		}
+
+		.color-swatch--add {
+			border: none !important;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08) !important; /* Bottom shadow border */
+			border-radius: 8px 8px 0 0 !important; /* Top corner radius to match color items */
+			margin: 0;
+			background: #f8f9fa !important; /* Subtle background for placeholder */
+			width: 100%; /* Use full width of container */
+			height: 80px; /* Match palette card height */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.add-color-label {
+			padding: 8px 12px;
+			margin: 0;
+			background: none;
+			border: none;
+			width: 100%;
+			text-align: center;
+			font-weight: 600;
+			font-size: 0.875rem;
+			color: #1e1e1e;
+			box-sizing: border-box;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			box-shadow: none !important; /* Remove any box shadow from label */
+			border-radius: 0 !important; /* Remove any border radius from label */
+		}
+	}
+}
+
+.color-picker-popover {
+	padding: 0 !important;
+	width: auto;
+	min-width: fit-content;
+	max-width: none;
+
+	&__content {
+		margin-bottom: 16px;
+		padding: 0 !important;
+
+		.components-color-picker {
+			margin: 0 !important;
+			padding: 0 !important;
+			width: auto;
+		}
+
+		.components-base-control {
+			width: 100%;
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+
+		.components-text-control__input {
+			width: 100%;
+			box-sizing: border-box;
+			margin: 0 !important;
+			padding: 8px 12px !important;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		gap: 8px;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		padding: 0 16px 16px;
+		margin: 0 !important;
+	}
+}
+
+/* Remove default WordPress popover content padding */
+.components-popover__content .color-picker-popover {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.components-popover__content .color-picker-popover__content {
+	padding: 16px 16px 0 !important;
+	margin: 0 !important;
+}
+
+/* Remove all default padding from color picker components */
+.components-color-picker__saturation,
+.components-color-picker__hue,
+.components-color-picker__alpha,
+.components-color-picker__inputs {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.components-color-picker__inputs-wrapper {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.components-color-picker {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+/* Hide color copy buttons in editor */
+.color-copy-buttons {
+	display: none !important;
+}
