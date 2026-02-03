@@ -20,6 +20,7 @@ import './style.scss';
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
+import deprecated from './deprecated';
 
 /**
  * Custom SVG icon for the color palette block
@@ -71,4 +72,9 @@ registerBlockType( metadata.name, {
 	 * @see ./save.js
 	 */
 	save,
+
+	/**
+	 * Ensure legacy markup stays valid and migrates cleanly.
+	 */
+	deprecated,
 } );
