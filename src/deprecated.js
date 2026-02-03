@@ -1,3 +1,5 @@
+import generateColorName from './utils/generateColorName';
+
 /**
  * Legacy block definitions to keep older markup valid and migrate data forward.
  */
@@ -30,16 +32,24 @@ const legacyAttributes = {
  * Keeps existing ordering stable by deriving ids from their index when needed.
  */
 const mapLegacyColors = (legacyColors = []) => {
+	const ensureHex = (value = '') => {
+		if (!value) {
+			return '#000000';
+		}
+		return value.startsWith('#') ? value : `#${value.replace(/^#/, '')}`;
+	};
+
 	return legacyColors
 		.filter((color) => color && (color.code || color.swatch))
 		.map((color, index) => {
-			const code = (color.code || color.swatch || '').trim();
-			const name = (color.swatch || '').trim();
+			const rawCode = (color.code || color.swatch || '').trim();
+			const normalizedCode = ensureHex(rawCode);
+			const swatchName = (color.swatch || '').trim();
 
 			return {
 				id: color.id ? String(color.id) : `legacy-color-${index}`,
-				color: code,
-				name
+				color: normalizedCode,
+				name: swatchName || generateColorName(normalizedCode)
 			};
 		});
 };
@@ -49,7 +59,7 @@ const deprecated = [
 		attributes: legacyAttributes,
 		migrate: (attributes) => ({
 			colors: mapLegacyColors(attributes.colors),
-			showColorNames: false,
+			showColorNames: true,
 			showColorCodes: true
 		}),
 		save: ({ attributes }) => {
