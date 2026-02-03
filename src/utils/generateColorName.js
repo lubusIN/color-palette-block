@@ -8,9 +8,9 @@ const generateColorName = (hexColor) => {
 	}
 
 	const hex = hexColor.slice(1);
-	const r = parseInt(hex.substr(0, 2), 16);
-	const g = parseInt(hex.substr(2, 2), 16);
-	const b = parseInt(hex.substr(4, 2), 16);
+	const r = parseInt(hex.slice(0, 2), 16);
+	const g = parseInt(hex.slice(2, 4), 16);
+	const b = parseInt(hex.slice(4, 6), 16);
 
 	const rNorm = r / 255;
 	const gNorm = g / 255;
@@ -40,7 +40,7 @@ const generateColorName = (hexColor) => {
 				hue = ((rNorm - gNorm) / diff + 4) / 6;
 				break;
 		}
-		hue /= 6;
+
 	}
 
 	hue = Math.round(hue * 360);
