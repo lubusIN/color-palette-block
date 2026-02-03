@@ -12,7 +12,8 @@
         "lint:js": "wp-scripts lint-js",
         "packages-update": "wp-scripts packages-update",
         "plugin-zip": "wp-scripts plugin-zip",
-        "start": "wp-scripts start --blocks-manifest"
+        "start": "wp-scripts start --blocks-manifest",
+        "serve": "npx @wp-playground/cli server --auto-mount --blueprint=./_playground/blueprint-local.json"
     },
     "devDependencies": {
         "@wordpress/scripts": "^30.15.0"
