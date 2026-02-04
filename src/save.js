@@ -42,13 +42,25 @@ export default function save({ attributes, className }) {
 		const colorClasses = `color-item color-item--${displayStyle}`;
 		
 		return (
-			<div key={color.id} className={colorClasses} data-color={color.color}>
+			<div 
+				key={color.id} 
+				className={colorClasses} 
+				data-color={color.color}
+				data-wp-context={JSON.stringify({ 
+					colorHex: color.color,
+					colorName: color.name || '',
+					isPopoverOpen: false,
+					copyStatus: '',
+					copyStatusText: ''
+				})}
+			>
 				{displayStyle === 'polaroid' ? (
 					<div className="color-frame">
 						<div className="color-swatch-wrapper">
 							<div 
 								className="color-swatch"
 								style={{ backgroundColor: color.color }}
+								data-wp-on--click="actions.togglePopover"
 							>
 							</div>
 						</div>
@@ -57,6 +69,7 @@ export default function save({ attributes, className }) {
 					<div 
 						className="color-swatch"
 						style={{ backgroundColor: color.color }}
+						data-wp-on--click="actions.togglePopover"
 					>
 					</div>
 				)}
@@ -66,17 +79,49 @@ export default function save({ attributes, className }) {
 				{showColorCodes && (
 					<div className="color-code">{color.color ? color.color.toUpperCase() : ''}</div>
 				)}
-				<div className="color-copy-buttons">
-					<button className="copy-btn" data-format="hex" data-color={color.color}>
+				<div 
+					className="color-copy-buttons"
+					data-wp-class--is-open="context.isPopoverOpen"
+					data-wp-on--mouseleave="actions.closePopover"
+				>
+					<button 
+						className="copy-btn" 
+						data-format="hex"
+						data-wp-on--click="actions.copyColor"
+						data-wp-class--copied="state.isHexCopied"
+						data-wp-class--failed="state.isHexFailed"
+						data-wp-text="state.hexButtonText"
+					>
 						HEX
 					</button>
-					<button className="copy-btn" data-format="rgb" data-color={color.color}>
+					<button 
+						className="copy-btn" 
+						data-format="rgb"
+						data-wp-on--click="actions.copyColor"
+						data-wp-class--copied="state.isRgbCopied"
+						data-wp-class--failed="state.isRgbFailed"
+						data-wp-text="state.rgbButtonText"
+					>
 						RGB
 					</button>
-					<button className="copy-btn" data-format="hsl" data-color={color.color}>
+					<button 
+						className="copy-btn" 
+						data-format="hsl"
+						data-wp-on--click="actions.copyColor"
+						data-wp-class--copied="state.isHslCopied"
+						data-wp-class--failed="state.isHslFailed"
+						data-wp-text="state.hslButtonText"
+					>
 						HSL
 					</button>
-					<button className="copy-btn" data-format="css" data-color={color.color} data-name={color.name}>
+					<button 
+						className="copy-btn" 
+						data-format="css"
+						data-wp-on--click="actions.copyColor"
+						data-wp-class--copied="state.isCssCopied"
+						data-wp-class--failed="state.isCssFailed"
+						data-wp-text="state.cssButtonText"
+					>
 						CSS
 					</button>
 				</div>
@@ -85,7 +130,10 @@ export default function save({ attributes, className }) {
 	};
 
 	return (
-		<div {...useBlockProps.save()}>
+		<div 
+			{...useBlockProps.save()}
+			data-wp-interactive="lubus/color-palette"
+		>
 			<div className={`color-palette color-palette--${displayStyle}`}>
 				{colors.length > 0 && (
 					<div className="color-grid">

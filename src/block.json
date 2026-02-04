@@ -73,11 +73,12 @@
 	},
 	"supports": {
 		"html": false,
-		"align": ["wide", "full"]
+		"align": ["wide", "full"],
+		"interactivity": true
 	},
 	"textdomain": "color-palette-block-wp",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScriptModule": "file:./view.js"
 }

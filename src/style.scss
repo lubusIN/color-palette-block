@@ -307,7 +307,8 @@
 	}
 
 	/* Keep buttons visible when hovering over them */
-	&:hover {
+	&:hover,
+	&.is-open {
 		opacity: 1 !important;
 		visibility: visible !important;
 		pointer-events: auto !important;
