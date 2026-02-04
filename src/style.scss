@@ -61,6 +61,11 @@
 	&:hover {
 		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 	}
+
+	&:focus-visible {
+		outline: 3px solid #0050b3;
+		outline-offset: 3px;
+	}
 }
 
 /* Style variations using WordPress block style classes */

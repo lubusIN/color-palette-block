@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -31,7 +31,7 @@ import {
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
-import { plus, trash, shuffle } from '@wordpress/icons';
+import { plus, trash } from '@wordpress/icons';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -41,6 +41,7 @@ import { plus, trash, shuffle } from '@wordpress/icons';
  */
 import './editor.scss';
 import generateColorName from './utils/generateColorName';
+import getDisplayStyle from './utils/getDisplayStyle';
 import ColorPaletteIcon from './icon';
 
 /**
@@ -67,16 +68,8 @@ export default function Edit({ attributes, setAttributes, className }) {
 	const [colorToDelete, setColorToDelete] = useState(null);
 	const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-	// Extract display style from className
-	const getDisplayStyle = () => {
-		if (className && className.includes('is-style-')) {
-			const styleMatch = className.match(/is-style-([a-z-]+)/);
-			return styleMatch ? styleMatch[1] : 'default';
-		}
-		return 'default';
-	};
-
-	const displayStyle = getDisplayStyle();
+	const paletteColors = Array.isArray(colors) ? colors : [];
+	const displayStyle = getDisplayStyle(className);
 
 	// Get theme colors from WordPress
 	const { themeColors } = useSelect((select) => {
@@ -111,17 +104,17 @@ export default function Edit({ attributes, setAttributes, className }) {
 		}
 
 		setAttributes({
-			colors: [...colors, ...randomColors]
+			colors: [...paletteColors, ...randomColors]
 		});
 	};
 
 	// Open popover for both toolbar and placeholder "Add Color" buttons
 	const openAddColorPopover = (event) => {
-		setPopoverAnchor(event.target);
+		const anchor = event?.currentTarget || event?.target || null;
+		setPopoverAnchor(anchor);
 		setEditingColor(null);
 		const initialColor = '#000000';
 		setNewColor(initialColor);
-		// For new colors, start with generated name and mark as not user-typed
 		setNewColorName(generateColorName(initialColor));
 		setHasUserTypedName(false);
 		setIsPopoverOpen(true);
@@ -135,7 +128,7 @@ export default function Edit({ attributes, setAttributes, className }) {
 			name: colorName
 		};
 		setAttributes({
-			colors: [...colors, colorObject]
+			colors: [...paletteColors, colorObject]
 		});
 		setNewColor('#000000');
 		setNewColorName('');
@@ -151,13 +144,13 @@ export default function Edit({ attributes, setAttributes, className }) {
 		}));
 
 		setAttributes({
-			colors: [...colors, ...newThemeColors]
+			colors: [...paletteColors, ...newThemeColors]
 		});
 	};
 
 	const updateColor = (id, updates) => {
 		setAttributes({
-			colors: colors.map(colorItem =>
+			colors: paletteColors.map(colorItem =>
 				colorItem.id === id ? { ...colorItem, ...updates } : colorItem
 			)
 		});
@@ -165,7 +158,7 @@ export default function Edit({ attributes, setAttributes, className }) {
 
 	const removeColor = (id) => {
 		setAttributes({
-			colors: colors.filter(colorItem => colorItem.id !== id)
+			colors: paletteColors.filter(colorItem => colorItem.id !== id)
 		});
 		setShowDeleteConfirm(false);
 		setColorToDelete(null);
@@ -189,7 +182,8 @@ export default function Edit({ attributes, setAttributes, className }) {
 	};
 
 	const openEditPopover = (colorItem, event) => {
-		setPopoverAnchor(event.target);
+		const anchor = event?.currentTarget || event?.target || null;
+		setPopoverAnchor(anchor);
 		setEditingColor(colorItem);
 		setNewColor(colorItem.color);
 		setNewColorName(colorItem.name);
@@ -272,6 +266,27 @@ export default function Edit({ attributes, setAttributes, className }) {
 		}
 
 		const colorClasses = `color-item color-item--${displayStyle}`;
+		const colorCode = colorItem.color ? colorItem.color.toUpperCase() : '';
+		const fallbackName = colorItem.name || __('Untitled', 'color-palette-block-wp');
+		const swatchAriaLabel = sprintf(
+			__('Edit color %s', 'color-palette-block-wp'),
+			fallbackName
+		);
+		const handleSwatchKeyDown = (event) => {
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault();
+				openEditPopover(colorItem, event);
+			}
+		};
+		const swatchProps = {
+			className: 'color-swatch',
+			style: { backgroundColor: colorItem.color },
+			role: 'button',
+			tabIndex: 0,
+			'aria-label': swatchAriaLabel,
+			onClick: (event) => openEditPopover(colorItem, event),
+			onKeyDown: handleSwatchKeyDown
+		};
 
 		return (
 			<div
@@ -282,26 +297,22 @@ export default function Edit({ attributes, setAttributes, className }) {
 					<div className="color-frame">
 						<div className="color-swatch-wrapper">
 							<div
-								className="color-swatch"
-								style={{ backgroundColor: colorItem.color }}
-								onClick={(event) => openEditPopover(colorItem, event)}
+								{...swatchProps}
 							>
 							</div>
 						</div>
 					</div>
 				) : (
 					<div
-						className="color-swatch"
-						style={{ backgroundColor: colorItem.color }}
-						onClick={(event) => openEditPopover(colorItem, event)}
+						{...swatchProps}
 					>
 					</div>
 				)}
 				{showColorNames && (
-					<div className="color-name">{colorItem.name || 'Untitled'}</div>
+					<div className="color-name">{fallbackName}</div>
 				)}
 				{showColorCodes && (
-					<div className="color-code">{colorItem.color ? colorItem.color.toUpperCase() : ''}</div>
+					<div className="color-code">{colorCode}</div>
 				)}
 
 				{/* Delete button */}
@@ -318,12 +329,23 @@ export default function Edit({ attributes, setAttributes, className }) {
 
 	const renderAddColorPlaceholder = () => {
 		const colorClasses = `color-item color-item--${displayStyle} color-item--add`;
+		const placeholderLabel = __('Add Color', 'color-palette-block-wp');
+		const handleKeyDown = (event) => {
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault();
+				openAddColorPopover(event);
+			}
+		};
 
 		return (
 			<div
 				key="add-color-placeholder"
 				className={colorClasses}
 				onClick={openAddColorPopover}
+				role="button"
+				tabIndex={0}
+				aria-label={placeholderLabel}
+				onKeyDown={handleKeyDown}
 			>
 				{displayStyle === 'polaroid' ? (
 					<>
@@ -413,9 +435,9 @@ export default function Edit({ attributes, setAttributes, className }) {
 
 			<div {...blockProps}>
 				<div className={`color-palette color-palette--${displayStyle}`}>
-					{colors && colors.length > 0 ? (
+					{paletteColors.length > 0 ? (
 						<div className="color-grid">
-							{colors.map((colorItem, index) => renderColorItem(colorItem, index))}
+							{paletteColors.map((colorItem, index) => renderColorItem(colorItem, index))}
 							{renderAddColorPlaceholder()}
 						</div>
 					) : (
@@ -426,21 +448,20 @@ export default function Edit({ attributes, setAttributes, className }) {
 						>
 							{themeColors && themeColors.length > 0 && (
 								<Button
-									isPrimary
+									variant="primary"
 									onClick={addThemeColors}
 								>
 									{__('Theme Colors', 'color-palette-block-wp')}
 								</Button>
 							)}
 							<Button
-								isPrimary={!themeColors || themeColors.length === 0}
-								isSecondary={themeColors && themeColors.length > 0}
+								variant={!themeColors || themeColors.length === 0 ? 'primary' : 'secondary'}
 								onClick={generateRandomPalette}
 							>
 								{__('Surprise Me', 'color-palette-block-wp')}
 							</Button>
 							<Button
-								isSecondary
+								variant="secondary"
 								onClick={openAddColorPopover}
 							>
 								{__('Add Color', 'color-palette-block-wp')}
@@ -475,13 +496,13 @@ export default function Edit({ attributes, setAttributes, className }) {
 						</div>
 						<div className="color-picker-popover__actions">
 							<Button
-								isPrimary
+								variant="primary"
 								onClick={editingColor ? updateEditingColor : addColor}
 							>
 								{editingColor ? __('Update', 'color-palette-block-wp') : __('Add', 'color-palette-block-wp')}
 							</Button>
 							<Button
-								isSecondary
+								variant="secondary"
 								onClick={closePopover}
 							>
 								{__('Cancel', 'color-palette-block-wp')}
@@ -502,8 +523,10 @@ export default function Edit({ attributes, setAttributes, className }) {
 			>
 				{colorToDelete && (
 					<p>
-						{__('Are you sure you want to delete', 'color-palette-block-wp')}
-						<strong> "{colorToDelete.name || colorToDelete.color}"</strong>?
+						{sprintf(
+							__('Are you sure you want to delete "%s"?', 'color-palette-block-wp'),
+							colorToDelete.name || colorToDelete.color || __('this color', 'color-palette-block-wp')
+						)}
 					</p>
 				)}
 			</ConfirmDialog>

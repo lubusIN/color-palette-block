@@ -7,7 +7,7 @@
  * Author: LUBUS
  * Author URI: https://lubus.in
  * Version: 2.0.0
- * Text Domain: cpb
+ * Text Domain: color-palette-block-wp
  * Domain Path: /languages
  * GitHub Plugin URI: https://github.com/lubusIN/color-palette-block
  * Tags: gutenberg, block, colors
@@ -23,6 +23,14 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+/**
+ * Register plugin text domain for translations.
+ */
+function lubus_color_palette_block_load_textdomain() {
+	load_plugin_textdomain( 'color-palette-block-wp', false, basename( __DIR__ ) . '/languages' );
+}
+add_action( 'init', 'lubus_color_palette_block_load_textdomain' );
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.

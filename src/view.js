@@ -5,8 +5,29 @@
 import { store, getContext } from '@wordpress/interactivity';
 
 // Color format conversion functions
+function normalizeHex(hex) {
+	if (!hex) {
+		return null;
+	}
+
+	const stripped = hex.replace('#', '').trim();
+	if (stripped.length === 3) {
+		return `#${stripped[0]}${stripped[0]}${stripped[1]}${stripped[1]}${stripped[2]}${stripped[2]}`;
+	}
+	if (stripped.length === 6) {
+		return `#${stripped}`;
+	}
+
+	return null;
+}
+
 function hexToRgb(hex) {
-	const result = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex);
+	const normalizedHex = normalizeHex(hex);
+	if (!normalizedHex) {
+		return null;
+	}
+
+	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalizedHex);
 	if (!result) return null;
 
 	return {
@@ -112,6 +133,47 @@ async function copyToClipboard(text) {
 	}
 }
 
+const openPopoverFromEvent = (event) => {
+	const context = getContext();
+	const swatch = event?.currentTarget || event?.target;
+
+	if (!swatch) {
+		return;
+	}
+
+	// Cancel any pending close timer
+	if (context.closeTimerId) {
+		clearTimeout(context.closeTimerId);
+		context.closeTimerId = null;
+	}
+
+	const colorHex = swatch.dataset.colorHex;
+	const colorName = swatch.dataset.colorName || '';
+
+	if (!colorHex) {
+		return;
+	}
+
+	const blockWrapper = swatch.closest('[data-wp-interactive="lubus/color-palette"]');
+	if (!blockWrapper) {
+		return;
+	}
+
+	const blockRect = blockWrapper.getBoundingClientRect();
+	const colorItem = swatch.closest('.color-item');
+	const anchorRect = colorItem ? colorItem.getBoundingClientRect() : swatch.getBoundingClientRect();
+	const verticalGap = 8;
+	const top = anchorRect.bottom - blockRect.top + verticalGap;
+	const left = anchorRect.left - blockRect.left + (anchorRect.width / 2);
+
+	context.activeColorHex = colorHex;
+	context.activeColorName = colorName;
+	context.isPopoverOpen = true;
+	context.copyStatus = '';
+	context.popoverTop = `${top}px`;
+	context.popoverLeft = `${left}px`;
+};
+
 const { state } = store('lubus/color-palette', {
 	state: {
 		get hexButtonText() {
@@ -167,45 +229,15 @@ const { state } = store('lubus/color-palette', {
 	},
 	actions: {
 		openPopover(event) {
-			const context = getContext();
-			const swatch = event.target;
-			
-			// Cancel any pending close timer
-			if (context.closeTimerId) {
-				clearTimeout(context.closeTimerId);
-				context.closeTimerId = null;
-			}
-			
-			// Get color data from the swatch's data attributes
-			const colorHex = swatch.dataset.colorHex;
-			const colorName = swatch.dataset.colorName || '';
-			
-			if (!colorHex) return;
-			
-			// Find the block wrapper for position calculation
-			const blockWrapper = swatch.closest('[data-wp-interactive="lubus/color-palette"]');
-			if (!blockWrapper) return;
-			
-			// Get positions for popover placement
-			const swatchRect = swatch.getBoundingClientRect();
-			const blockRect = blockWrapper.getBoundingClientRect();
-			
-			// Calculate position relative to the block wrapper
-			const top = swatchRect.bottom - blockRect.top + 8; // 8px gap below the swatch
-			const left = swatchRect.left - blockRect.left + (swatchRect.width / 2);
-			
-			// Update context with active color and position
-			context.activeColorHex = colorHex;
-			context.activeColorName = colorName;
-			context.isPopoverOpen = true;
-			context.copyStatus = '';
-			context.popoverTop = `${top}px`;
-			context.popoverLeft = `${left}px`;
+			openPopoverFromEvent(event);
 		},
 		startCloseTimer() {
 			const context = getContext();
 			// Start a timer to close the popover after a short delay
 			// This allows time for the mouse to move from swatch to popover
+			if (context.closeTimerId) {
+				clearTimeout(context.closeTimerId);
+			}
 			context.closeTimerId = setTimeout(() => {
 				context.isPopoverOpen = false;
 				context.closeTimerId = null;
@@ -228,12 +260,18 @@ const { state } = store('lubus/color-palette', {
 			}
 			context.isPopoverOpen = false;
 		},
+		handleSwatchKeydown(event) {
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault();
+				openPopoverFromEvent(event);
+			}
+		},
 		async copyColor(event) {
 			event.preventDefault();
 			event.stopPropagation();
 
 			const context = getContext();
-			const button = event.target;
+			const button = event.currentTarget;
 			const format = button.dataset.format;
 			const colorHex = context.activeColorHex;
 			const colorName = context.activeColorName;
