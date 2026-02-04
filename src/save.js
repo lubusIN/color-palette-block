@@ -45,14 +45,6 @@ export default function save({ attributes, className }) {
 			<div 
 				key={color.id} 
 				className={colorClasses} 
-				data-color={color.color}
-				data-wp-context={JSON.stringify({ 
-					colorHex: color.color,
-					colorName: color.name || '',
-					isPopoverOpen: false,
-					copyStatus: '',
-					copyStatusText: ''
-				})}
 			>
 				{displayStyle === 'polaroid' ? (
 					<div className="color-frame">
@@ -60,7 +52,10 @@ export default function save({ attributes, className }) {
 							<div 
 								className="color-swatch"
 								style={{ backgroundColor: color.color }}
-								data-wp-on--click="actions.togglePopover"
+								data-color-hex={color.color}
+								data-color-name={color.name || ''}
+								data-wp-on--mouseenter="actions.openPopover"
+								data-wp-on--mouseleave="actions.startCloseTimer"
 							>
 							</div>
 						</div>
@@ -69,7 +64,10 @@ export default function save({ attributes, className }) {
 					<div 
 						className="color-swatch"
 						style={{ backgroundColor: color.color }}
-						data-wp-on--click="actions.togglePopover"
+						data-color-hex={color.color}
+						data-color-name={color.name || ''}
+						data-wp-on--mouseenter="actions.openPopover"
+						data-wp-on--mouseleave="actions.startCloseTimer"
 					>
 					</div>
 				)}
@@ -79,52 +77,6 @@ export default function save({ attributes, className }) {
 				{showColorCodes && (
 					<div className="color-code">{color.color ? color.color.toUpperCase() : ''}</div>
 				)}
-				<div 
-					className="color-copy-buttons"
-					data-wp-class--is-open="context.isPopoverOpen"
-					data-wp-on--mouseleave="actions.closePopover"
-				>
-					<button 
-						className="copy-btn" 
-						data-format="hex"
-						data-wp-on--click="actions.copyColor"
-						data-wp-class--copied="state.isHexCopied"
-						data-wp-class--failed="state.isHexFailed"
-						data-wp-text="state.hexButtonText"
-					>
-						HEX
-					</button>
-					<button 
-						className="copy-btn" 
-						data-format="rgb"
-						data-wp-on--click="actions.copyColor"
-						data-wp-class--copied="state.isRgbCopied"
-						data-wp-class--failed="state.isRgbFailed"
-						data-wp-text="state.rgbButtonText"
-					>
-						RGB
-					</button>
-					<button 
-						className="copy-btn" 
-						data-format="hsl"
-						data-wp-on--click="actions.copyColor"
-						data-wp-class--copied="state.isHslCopied"
-						data-wp-class--failed="state.isHslFailed"
-						data-wp-text="state.hslButtonText"
-					>
-						HSL
-					</button>
-					<button 
-						className="copy-btn" 
-						data-format="css"
-						data-wp-on--click="actions.copyColor"
-						data-wp-class--copied="state.isCssCopied"
-						data-wp-class--failed="state.isCssFailed"
-						data-wp-text="state.cssButtonText"
-					>
-						CSS
-					</button>
-				</div>
 			</div>
 		);
 	};
@@ -133,6 +85,14 @@ export default function save({ attributes, className }) {
 		<div 
 			{...useBlockProps.save()}
 			data-wp-interactive="lubus/color-palette"
+			data-wp-context={JSON.stringify({
+				activeColorHex: '',
+				activeColorName: '',
+				isPopoverOpen: false,
+				copyStatus: '',
+				popoverTop: '0px',
+				popoverLeft: '0px'
+			})}
 		>
 			<div className={`color-palette color-palette--${displayStyle}`}>
 				{colors.length > 0 && (
@@ -140,6 +100,56 @@ export default function save({ attributes, className }) {
 						{colors.map(renderColorItem)}
 					</div>
 				)}
+			</div>
+			{/* Single shared popover - rendered once for all colors */}
+			<div 
+				className="color-copy-popover"
+				data-wp-class--is-open="context.isPopoverOpen"
+				data-wp-style--top="context.popoverTop"
+				data-wp-style--left="context.popoverLeft"
+				data-wp-on--mouseenter="actions.cancelCloseTimer"
+				data-wp-on--mouseleave="actions.closePopover"
+			>
+				<button 
+					className="copy-btn" 
+					data-format="hex"
+					data-wp-on--click="actions.copyColor"
+					data-wp-class--copied="state.isHexCopied"
+					data-wp-class--failed="state.isHexFailed"
+					data-wp-text="state.hexButtonText"
+				>
+					HEX
+				</button>
+				<button 
+					className="copy-btn" 
+					data-format="rgb"
+					data-wp-on--click="actions.copyColor"
+					data-wp-class--copied="state.isRgbCopied"
+					data-wp-class--failed="state.isRgbFailed"
+					data-wp-text="state.rgbButtonText"
+				>
+					RGB
+				</button>
+				<button 
+					className="copy-btn" 
+					data-format="hsl"
+					data-wp-on--click="actions.copyColor"
+					data-wp-class--copied="state.isHslCopied"
+					data-wp-class--failed="state.isHslFailed"
+					data-wp-text="state.hslButtonText"
+				>
+					HSL
+				</button>
+				<button 
+					className="copy-btn" 
+					data-format="css"
+					data-wp-on--click="actions.copyColor"
+					data-wp-class--copied="state.isCssCopied"
+					data-wp-class--failed="state.isCssFailed"
+					data-wp-text="state.cssButtonText"
+				>
+					CSS
+				</button>
 			</div>
 		</div>
 	);

@@ -1,12 +1,12 @@
 /**
  * WordPress Interactivity API for the Color Palette block.
- * Handles color code copying functionality with popover and copy state management.
+ * Handles color code copying functionality with a shared popover and copy state management.
  */
 import { store, getContext } from '@wordpress/interactivity';
 
 // Color format conversion functions
 function hexToRgb(hex) {
-	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	const result = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex);
 	if (!result) return null;
 
 	return {
@@ -166,12 +166,66 @@ const { state } = store('lubus/color-palette', {
 		}
 	},
 	actions: {
-		togglePopover() {
+		openPopover(event) {
 			const context = getContext();
-			context.isPopoverOpen = !context.isPopoverOpen;
+			const swatch = event.target;
+			
+			// Cancel any pending close timer
+			if (context.closeTimerId) {
+				clearTimeout(context.closeTimerId);
+				context.closeTimerId = null;
+			}
+			
+			// Get color data from the swatch's data attributes
+			const colorHex = swatch.dataset.colorHex;
+			const colorName = swatch.dataset.colorName || '';
+			
+			if (!colorHex) return;
+			
+			// Find the block wrapper for position calculation
+			const blockWrapper = swatch.closest('[data-wp-interactive="lubus/color-palette"]');
+			if (!blockWrapper) return;
+			
+			// Get positions for popover placement
+			const swatchRect = swatch.getBoundingClientRect();
+			const blockRect = blockWrapper.getBoundingClientRect();
+			
+			// Calculate position relative to the block wrapper
+			const top = swatchRect.bottom - blockRect.top + 8; // 8px gap below the swatch
+			const left = swatchRect.left - blockRect.left + (swatchRect.width / 2);
+			
+			// Update context with active color and position
+			context.activeColorHex = colorHex;
+			context.activeColorName = colorName;
+			context.isPopoverOpen = true;
+			context.copyStatus = '';
+			context.popoverTop = `${top}px`;
+			context.popoverLeft = `${left}px`;
+		},
+		startCloseTimer() {
+			const context = getContext();
+			// Start a timer to close the popover after a short delay
+			// This allows time for the mouse to move from swatch to popover
+			context.closeTimerId = setTimeout(() => {
+				context.isPopoverOpen = false;
+				context.closeTimerId = null;
+			}, 150);
+		},
+		cancelCloseTimer() {
+			const context = getContext();
+			// Cancel the close timer when hovering over the popover
+			if (context.closeTimerId) {
+				clearTimeout(context.closeTimerId);
+				context.closeTimerId = null;
+			}
 		},
 		closePopover() {
 			const context = getContext();
+			// Cancel any pending timer
+			if (context.closeTimerId) {
+				clearTimeout(context.closeTimerId);
+				context.closeTimerId = null;
+			}
 			context.isPopoverOpen = false;
 		},
 		async copyColor(event) {
@@ -181,8 +235,8 @@ const { state } = store('lubus/color-palette', {
 			const context = getContext();
 			const button = event.target;
 			const format = button.dataset.format;
-			const colorHex = context.colorHex;
-			const colorName = context.colorName;
+			const colorHex = context.activeColorHex;
+			const colorName = context.activeColorName;
 
 			if (!colorHex || !format) return;
 

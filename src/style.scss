@@ -4,6 +4,7 @@
  */
 
 .wp-block-lubus-color-palette {
+	position: relative;
 	margin: 2rem 0;
 	overflow: visible;
 }
@@ -44,12 +45,6 @@
 	&:hover {
 		transform: translateY(-2px);
 		z-index: 10;
-
-		.color-copy-buttons {
-			opacity: 1 !important;
-			visibility: visible !important;
-			pointer-events: auto !important;
-		}
 	}
 }
 
@@ -259,22 +254,23 @@
 	text-overflow: ellipsis;
 }
 
-.color-copy-buttons {
+/* Shared popover positioned at block level - single instance for all colors */
+.color-copy-popover {
 	position: absolute;
-	top: 100%;
-	left: 50%;
 	transform: translateX(-50%);
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 0.25rem;
-	margin-top: 0.75rem;
+	max-width: 100px;
+	z-index: 100;
+
+	/* Hidden by default */
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
-	max-width: 100px;
-	z-index: 20;
+	transition: opacity 0.15s ease, visibility 0.15s ease;
 
-	/* Popover-like styling */
+	/* Popover styling */
 	background: #fff;
 	border: 1px solid #ddd;
 	border-radius: 6px;
@@ -306,30 +302,12 @@
 		z-index: 1;
 	}
 
-	/* Keep buttons visible when hovering over them */
-	&:hover,
+	/* Visible when open */
 	&.is-open {
-		opacity: 1 !important;
-		visibility: visible !important;
-		pointer-events: auto !important;
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
 	}
-}
-
-/* Extended hover area to bridge gap between color item and buttons */
-.color-item::after {
-	content: '';
-	position: absolute;
-	top: 100%;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 120px;
-	height: 50px;
-	z-index: 19;
-	pointer-events: auto;
-}
-
-.color-item:hover::after {
-	pointer-events: auto;
 }
 
 .copy-btn {
@@ -480,7 +458,7 @@
 		height: 20px;
 	}
 
-	.color-copy-buttons {
+	.color-copy-popover {
 		max-width: 80px;
 		padding: 6px;
 	}
