@@ -41,5 +41,9 @@ add_action( 'init', 'lubus_color_palette_block_load_textdomain' );
  */
 function lubus_color_palette_block_init() {
 	register_block_type( __DIR__ . '/build/' );
+	register_block_type( __DIR__ . '/build/swatch/' );
+	register_block_type( __DIR__ . '/build/swatch-color/' );
+	register_block_type( __DIR__ . '/build/swatch-name/' );
+	register_block_type( __DIR__ . '/build/swatch-code/' );
 }
 add_action( 'init', 'lubus_color_palette_block_init' );

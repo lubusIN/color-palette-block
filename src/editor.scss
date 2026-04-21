@@ -529,3 +529,32 @@
 .color-copy-buttons {
 	display: none !important;
 }
+
+.color-item.is-selected-swatch {
+	outline: 2px solid var(--wp-admin-theme-color, #2271b1) !important;
+	outline-offset: 4px !important;
+}
+
+.cpb-style-group + .cpb-style-group {
+	margin-top: 1.5rem;
+	padding-top: 1rem;
+	border-top: 1px solid #e0e0e0;
+}
+
+.cpb-style-heading {
+	margin-bottom: 0.5rem;
+}
+
+.cpb-style-description {
+	margin: 0 0 0.75rem;
+	color: #50575e;
+	font-size: 12px;
+}
+
+.color-palette-swatch-summary-action {
+	margin-top: 16px;
+}
+
+.color-palette-swatch-summary-action__inner {
+	display: flex;
+}

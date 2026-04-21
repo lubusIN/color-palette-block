@@ -7,32 +7,133 @@
 	"category": "design",
 	"icon": "art",
 	"description": "Build and share beautiful color palettes with multiple display styles and easy color code copying.",
+	"attributes": {
+		"swatchSize": {
+			"type": "number"
+		}
+	},
 	"example": {
 		"attributes": {
-			"colors": [
-				{
-					"id": "1",
+			"className": "is-style-circle"
+		},
+		"innerBlocks": [
+			{
+				"name": "lubus/color-palette-swatch",
+				"attributes": {
 					"color": "#ff6b6b",
 					"name": "Coral Red"
 				},
-				{
-					"id": "2",
+				"innerBlocks": [
+					{
+						"name": "lubus/color-palette-swatch-color",
+						"attributes": {
+							"label": "Coral Red",
+							"style": {
+								"color": {
+									"background": "#ff6b6b"
+								}
+							}
+						}
+					},
+					{
+						"name": "lubus/color-palette-swatch-name",
+						"attributes": {
+							"content": "Coral Red"
+						}
+					},
+					{
+						"name": "lubus/color-palette-swatch-code"
+					}
+				]
+			},
+			{
+				"name": "lubus/color-palette-swatch",
+				"attributes": {
 					"color": "#4ecdc4",
 					"name": "Teal"
 				},
-				{
-					"id": "3",
+				"innerBlocks": [
+					{
+						"name": "lubus/color-palette-swatch-color",
+						"attributes": {
+							"label": "Teal",
+							"style": {
+								"color": {
+									"background": "#4ecdc4"
+								}
+							}
+						}
+					},
+					{
+						"name": "lubus/color-palette-swatch-name",
+						"attributes": {
+							"content": "Teal"
+						}
+					},
+					{
+						"name": "lubus/color-palette-swatch-code"
+					}
+				]
+			},
+			{
+				"name": "lubus/color-palette-swatch",
+				"attributes": {
 					"color": "#45b7d1",
 					"name": "Sky Blue"
 				},
-				{
-					"id": "4",
+				"innerBlocks": [
+					{
+						"name": "lubus/color-palette-swatch-color",
+						"attributes": {
+							"label": "Sky Blue",
+							"style": {
+								"color": {
+									"background": "#45b7d1"
+								}
+							}
+						}
+					},
+					{
+						"name": "lubus/color-palette-swatch-name",
+						"attributes": {
+							"content": "Sky Blue"
+						}
+					},
+					{
+						"name": "lubus/color-palette-swatch-code"
+					}
+				]
+			},
+			{
+				"name": "lubus/color-palette-swatch",
+				"attributes": {
 					"color": "#96ceb4",
 					"name": "Mint Green"
-				}
-			],
-			"className": "is-style-circle"
-		}
+				},
+				"innerBlocks": [
+					{
+						"name": "lubus/color-palette-swatch-color",
+						"attributes": {
+							"label": "Mint Green",
+							"style": {
+								"color": {
+									"background": "#96ceb4"
+								}
+							}
+						}
+					},
+					{
+						"name": "lubus/color-palette-swatch-name",
+						"attributes": {
+							"content": "Mint Green"
+						}
+					},
+					{
+						"name": "lubus/color-palette-swatch-code"
+					}
+				]
+			}
+		]
 	},
 	"styles": [
 		{
@@ -57,28 +158,55 @@
 			"label": "Palette"
 		}
 	],
-	"attributes": {
-		"colors": {
-			"type": "array",
-			"default": []
-		},
-		"showColorNames": {
-			"type": "boolean",
-			"default": true
-		},
-		"showColorCodes": {
-			"type": "boolean",
-			"default": true
-		}
-	},
 	"supports": {
 		"html": false,
-		"align": ["wide", "full"],
-		"interactivity": true
+		"align": [
+			"wide",
+			"full"
+		],
+		"interactivity": true,
+		"color": {
+			"background": true,
+			"text": false,
+			"__experimentalDefaultControls": {
+				"background": true
+			}
+		},
+		"layout": {
+			"allowSwitching": true,
+			"allowInheriting": false,
+			"default": {
+				"type": "grid",
+				"minimumColumnWidth": "100px"
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true,
+			"__experimentalDefaultControls": {
+				"margin": true,
+				"padding": true,
+				"blockGap": true
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"radius": true,
+				"style": true,
+				"width": true
+			}
+		}
 	},
 	"textdomain": "color-palette-block-wp",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
+	"render": "file:./render.php",
 	"viewScriptModule": "file:./view.js"
 }
