@@ -535,6 +535,12 @@
 	outline-offset: 4px !important;
 }
 
+.color-palette__editor-actions {
+	display: flex;
+	justify-content: center;
+	margin-top: 1rem;
+}
+
 .cpb-style-group + .cpb-style-group {
 	margin-top: 1.5rem;
 	padding-top: 1rem;

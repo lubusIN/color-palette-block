@@ -15,7 +15,7 @@ import { hexToHsl, hexToRgb } from "./utils/colorValue";
  * Internal constants
  */
 const POPOVER_VERTICAL_GAP = 8;
-const POPOVER_CLOSE_DELAY = 150;
+const POPOVER_CLOSE_DELAY = 300;
 const COPY_STATUS_RESET_DELAY = 1500;
 const COPY_BUTTON_LABELS = COPY_BUTTON_FORMATS.reduce(
 	(labels, format) => ({
@@ -128,6 +128,21 @@ const clearCloseTimer = (context) => {
 
 	clearTimeout(context.closeTimerId);
 	context.closeTimerId = null;
+};
+
+/**
+ * Starts the delayed popover close timer used when focus or pointer leaves a
+ * swatch trigger or the shared popover.
+ *
+ * @param {Object} context Interactivity context.
+ * @return {void}
+ */
+const startCloseTimer = (context) => {
+	clearCloseTimer(context);
+	context.closeTimerId = setTimeout(() => {
+		context.isPopoverOpen = false;
+		context.closeTimerId = null;
+	}, POPOVER_CLOSE_DELAY);
 };
 
 /**
@@ -260,22 +275,13 @@ store("lubus/color-palette", {
 			openPopoverFromEvent(event);
 		},
 		startCloseTimer() {
-			const context = getContext();
-
-			clearCloseTimer(context);
-			context.closeTimerId = setTimeout(() => {
-				context.isPopoverOpen = false;
-				context.closeTimerId = null;
-			}, POPOVER_CLOSE_DELAY);
+			startCloseTimer(getContext());
 		},
 		cancelCloseTimer() {
 			clearCloseTimer(getContext());
 		},
 		closePopover() {
-			const context = getContext();
-
-			clearCloseTimer(context);
-			context.isPopoverOpen = false;
+			startCloseTimer(getContext());
 		},
 		handleSwatchKeydown(event) {
 			if (event.key === "Enter" || event.key === " ") {

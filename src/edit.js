@@ -5,7 +5,6 @@ import { __ } from "@wordpress/i18n";
 import {
 	BlockControls,
 	InspectorControls,
-	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
 } from "@wordpress/block-editor";
@@ -55,6 +54,20 @@ const generateRandomColor = () => {
 };
 
 /**
+ * Creates a swatch block with a random color and generated name.
+ *
+ * @return {WPBlock} Swatch block instance.
+ */
+const createRandomSwatchBlock = () => {
+	const color = generateRandomColor();
+
+	return createSwatchBlock({
+		color,
+		name: generateColorName(color),
+	});
+};
+
+/**
  * Editor component for the parent color palette block.
  *
  * @param {Object}   props               Block props.
@@ -98,7 +111,7 @@ export default function Edit({
 	};
 
 	const addSingleSwatch = () => {
-		insertSwatches([createSwatchBlock()]);
+		insertSwatches([createRandomSwatchBlock()]);
 	};
 
 	const addThemeColors = () => {
@@ -117,24 +130,20 @@ export default function Edit({
 
 	const addRandomPalette = () => {
 		const randomCount = Math.floor(Math.random() * 4) + 4;
-		const randomSwatches = Array.from({ length: randomCount }, () => {
-			const color = generateRandomColor();
-
-			return createSwatchBlock({
-				color,
-				name: generateColorName(color),
-			});
-		});
+		const randomSwatches = Array.from(
+			{ length: randomCount },
+			createRandomSwatchBlock,
+		);
 
 		insertSwatches(randomSwatches);
 	};
 
 	const innerBlocksProps = useInnerBlocksProps(
-		{ className: "color-grid" },
+		{ className: "color-palette__items" },
 		{
 			allowedBlocks: ALLOWED_BLOCKS,
 			orientation: "horizontal",
-			renderAppender: InnerBlocks.ButtonBlockAppender,
+			renderAppender: false,
 		},
 	);
 
@@ -172,7 +181,14 @@ export default function Edit({
 			<div {...blockProps}>
 				<div className={`color-palette color-palette--${displayStyle}`}>
 					{innerBlockCount > 0 ? (
-						<div {...innerBlocksProps} />
+						<>
+							<div {...innerBlocksProps} />
+							<div className="color-palette__editor-actions">
+								<Button variant="secondary" onClick={addSingleSwatch}>
+									{__("Add Swatch", "color-palette-block-wp")}
+								</Button>
+							</div>
+						</>
 					) : (
 						<Placeholder
 							icon={<ColorPaletteIcon />}

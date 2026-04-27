@@ -34,6 +34,16 @@ const innerBlocksAttributes = {
 };
 
 /**
+ * Attributes used by the first dynamic parent implementation that saved only
+ * raw inner blocks without the layout wrapper.
+ */
+const minimalInnerBlocksAttributes = {
+	swatchSize: {
+		type: "number",
+	},
+};
+
+/**
  * Deprecated attributes used by the previous array-based implementation before
  * the block moved to the InnerBlocks swatch architecture.
  */
@@ -172,7 +182,7 @@ const renderInnerBlocksPalette = (attributes, className) => {
 			})}
 		>
 			<div className={`color-palette color-palette--${displayStyle}`}>
-				<div className="color-grid">
+				<div className="color-palette__items">
 					<InnerBlocks.Content />
 				</div>
 			</div>
@@ -228,17 +238,17 @@ const renderArrayPalette = (attributes, className) => {
 		return (
 			<div
 				key={color.id}
+				{...getSwatchTriggerProps({
+					accessibleLabel: fallbackName,
+					colorName: fallbackName,
+					colorValue: color.color,
+				})}
 				className={`color-item color-item--${displayStyle}`}
 				style={Object.keys(cardStyle).length > 0 ? cardStyle : undefined}
 			>
 				<div
 					className="color-swatch"
 					style={{ backgroundColor: color.color }}
-					{...getSwatchTriggerProps({
-						accessibleLabel: fallbackName,
-						colorName: fallbackName,
-						colorValue: color.color,
-					})}
 				/>
 				{showColorNames && (
 					<div
@@ -268,7 +278,9 @@ const renderArrayPalette = (attributes, className) => {
 			})}
 		>
 			<div className={`color-palette color-palette--${displayStyle}`}>
-				<div className="color-grid">{colors.map(renderColorItem)}</div>
+				<div className="color-palette__items">
+					{colors.map(renderColorItem)}
+				</div>
 			</div>
 			<div
 				className="color-copy-popover"
@@ -291,6 +303,10 @@ const renderArrayPalette = (attributes, className) => {
  * the most recent compatible save shape first.
  */
 const deprecated = [
+	{
+		attributes: minimalInnerBlocksAttributes,
+		save: () => <InnerBlocks.Content />,
+	},
 	{
 		attributes: innerBlocksAttributes,
 		save: ({ attributes, className }) =>

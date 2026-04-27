@@ -66,11 +66,29 @@ if ( isset( $attributes['swatchSize'] ) && is_numeric( $attributes['swatchSize']
 }
 
 $display_style = $get_display_style( $attributes['className'] ?? '' );
+$has_layout_wrapper = false !== strpos( $content, 'class="color-palette__items' ) || false !== strpos( $content, "class='color-palette__items" );
+
+if ( ! $has_layout_wrapper ) {
+	/*
+	 * The first dynamic save implementation stored only raw inner blocks. Add the
+	 * missing wrapper in the rendered HTML and mirror that wrapper into the parsed
+	 * block data so core layout support targets `.color-palette__items` instead of
+	 * the outer interactive wrapper.
+	 */
+	if ( isset( $block ) && $block instanceof WP_Block ) {
+		$block->parsed_block['innerContent'] = array( '<div class="color-palette__items">', null, '</div>' );
+	}
+
+	$content = sprintf(
+		'<div class="color-palette__items">%s</div>',
+		$content
+	);
+}
 ?>
 
 <div <?php echo get_block_wrapper_attributes( $extra_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="<?php echo esc_attr( "color-palette color-palette--{$display_style}" ); ?>">
-		<div class="color-grid"><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+		<?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</div>
 	<div
 		class="color-copy-popover"

@@ -111,19 +111,10 @@ const getDeprecatedCardStyles = (styles = {}) =>
  * Renders the deprecated swatch trigger used by previous save versions.
  *
  * @param {string} colorValue    Swatch color value.
- * @param {string} fallbackName  Swatch label.
  * @return {JSX.Element} Saved swatch trigger.
  */
-const renderDeprecatedSwatch = (colorValue, fallbackName) => (
-	<div
-		className="color-swatch"
-		style={{ backgroundColor: colorValue }}
-		{...getSwatchTriggerProps({
-			accessibleLabel: fallbackName,
-			colorName: fallbackName,
-			colorValue,
-		})}
-	/>
+const renderDeprecatedSwatch = (colorValue) => (
+	<div className="color-swatch" style={{ backgroundColor: colorValue }} />
 );
 
 /**
@@ -165,6 +156,11 @@ const deprecated = [
 			const blockProps = useBlockProps.save({
 				className: "color-item",
 				style: Object.keys(cardStyle).length > 0 ? cardStyle : undefined,
+				...getSwatchTriggerProps({
+					accessibleLabel: fallbackName,
+					colorName: fallbackName,
+					colorValue,
+				}),
 			});
 			const innerBlocksProps = useInnerBlocksProps.save({
 				className: "color-swatch-meta",
@@ -208,6 +204,11 @@ const deprecated = [
 					{...useBlockProps.save({
 						className: "color-item",
 						style: Object.keys(cardStyle).length > 0 ? cardStyle : undefined,
+						...getSwatchTriggerProps({
+							accessibleLabel: fallbackName,
+							colorName: fallbackName,
+							colorValue,
+						}),
 					})}
 				>
 					{renderDeprecatedSwatch(colorValue, fallbackName)}

@@ -1,14 +1,20 @@
 /**
  * WordPress dependencies
  */
-import { InnerBlocks } from "@wordpress/block-editor";
+import { useInnerBlocksProps } from "@wordpress/block-editor";
 
 /**
- * Save only the swatch inner blocks. The frontend wrapper is rendered by
- * render.php so future markup changes can happen server-side.
+ * Save the inner blocks wrapper so dynamic frontend rendering still gives
+ * WordPress layout support a stable container to target.
  *
  * @return {JSX.Element} Saved markup.
  */
 export default function save() {
-	return <InnerBlocks.Content />;
+	return (
+		<div
+			{...useInnerBlocksProps.save({
+				className: "color-palette__items",
+			})}
+		/>
+	);
 }
