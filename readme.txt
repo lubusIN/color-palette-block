@@ -1,4 +1,4 @@
-=== Color Palette ===
+=== Color Palette Block ===
 Contributors: lubus,ajitbohra, punitv342
 Donate link: http://www.lubus.in
 Tags: gutenberg, block, color, palette
