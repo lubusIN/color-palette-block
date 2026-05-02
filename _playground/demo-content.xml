@@ -29,11 +29,11 @@
 
 		<item>
 			<title><![CDATA[Color Palette]]></title>
-			<link>https://playground.wordpress.net/scope:sad-busy-park/?page_id=6</link>
+			<link>https://playground.wordpress.net/scope:sad-busy-park/?page_id=4</link>
 			<pubDate></pubDate>
 			<dc:creator><![CDATA[admin]]></dc:creator>
 			<guid isPermaLink="false">
-				https://playground.wordpress.net/scope:sad-busy-park/?page_id=6</guid>
+				https://playground.wordpress.net/scope:sad-busy-park/?page_id=4</guid>
 			<description></description>
 			<content:encoded><![CDATA[<!-- wp:lubus/color-palette -->
 <ul class="wp-block-lubus-color-palette cpb-colors"></ul>
