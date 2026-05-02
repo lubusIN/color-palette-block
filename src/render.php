@@ -5,6 +5,8 @@
  * @package lubusIN_Color_Palette_Block
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $context = array(
 	'activeColorHex'  => '',
 	'activeColorName' => '',
