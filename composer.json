@@ -1,0 +1,42 @@
+{
+    "name": "lubusin/blablablocks-color-palette-block",
+    "description": "Build and share beautiful color palettes with multiple display styles and easy color code copying.",
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "block",
+        "color-palette",
+        "blablablocks"
+    ],
+    "homepage": "https://lubus.in",
+    "license": "MIT",
+    "authors": [
+		{
+            "name": "Ajit Bohra",
+            "email": "ajit@lubus.in",
+            "homepage": "https://lubus.in"
+        },
+        {
+            "name": "Punit Verma",
+            "email": "punit@lubus.in",
+            "homepage": "https://lubus.in"
+        }
+    ],
+    "type": "wordpress-plugin",
+    "support": {
+        "issues": "https://github.com/lubusIN/color-palette-block/issues",
+        "source": "https://github.com/lubusIN/color-palette-block"
+    },
+    "extra": {
+        "installer-name": "color-palette-block"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "composer/installers": "^2.3"
+    }
+}
