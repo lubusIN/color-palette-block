@@ -2,9 +2,9 @@
     "$schema": "https://playground.wordpress.net/blueprint-schema.json",
     "landingPage": "/wp-admin/post.php?post=4&action=edit",
     "preferredVersions": {
-		"php": "8.2",
-		"wp": "6.7"
-	},
+        "php": "8.2",
+        "wp": "6.7"
+    },
     "login": true,
     "features": {
         "networking": true
@@ -21,7 +21,14 @@
         {
             "step": "setSiteOptions",
             "options": {
-                "blogname": "BlaBlaBlocks Formats | Local Dev 🧑‍💻"
+                "blogname": "BlaBlaBlocks Color Palette | Local Dev 🧑‍💻"
+            }
+        },
+        {
+            "step": "importWxr",
+            "file": {
+                "resource": "bundled",
+                "path": "/demo-content.xml"
             }
         }
     ]
