@@ -1,4 +1,4 @@
-<p align="center"><img height="75" src="https://user-images.githubusercontent.com/1039236/38085557-935d7ce8-336e-11e8-920e-dc2d46610c6a.png"></p>
+<p align="center"><img width="350" src=".github/logo.svg"></p>
 
 ![BlaBlaBlocks Color Palette Block](https://raw.githubusercontent.com/lubusIN/color-palette-block/master/.wordpress-org/screenshot-1.gif)
 
