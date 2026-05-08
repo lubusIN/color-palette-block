@@ -2,7 +2,7 @@
 
 ![BlaBlaBlocks Color Palette Block](https://raw.githubusercontent.com/lubusIN/color-palette-block/master/.wordpress-org/screenshot-1.gif)
 
-[![Live Preview](https://img.shields.io/badge/Live%20Preview-3858e9?style=for-the-badge&logo=wordpress&logoColor=fff)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/lubusIN/color-palette-block/master/_playground/blueprint-github.json) [![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/color-palette-block?style=for-the-badge&logo=wordpress&label=Install&labelColor=blue)](https://wordpress.org/plugins/color-palette-block/)
+[![Live Preview](https://img.shields.io/badge/Live%20Preview-3858e9?style=for-the-badge&logo=wordpress&logoColor=fff)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/lubusIN/color-palette-block/playground/_playground/blueprint-github.json) [![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/color-palette-block?style=for-the-badge&logo=wordpress&label=Install&labelColor=blue)](https://wordpress.org/plugins/color-palette-block/)
 
 ## Overview
 
