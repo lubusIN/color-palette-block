@@ -3,9 +3,12 @@
 .git
 .github
 .gitignore
+.gitkeep
 .DS_Store
 .nvmrc
 .eslintrc.js
+.eslintrc
+.eslintignore
 _playground
 _wordpress-org
 composer.json

@@ -1,17 +1,8 @@
-
 {
-	"extends": [
-		"eslint:recommended",
-		"plugin:react/recommended",
-		"prettier",
-		"prettier/react"
-	],
-	"plugins": [
-		"prettier",
-		"react"
-	],
-	"parser": "babel-eslint",
+	"extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+	"plugins": ["prettier", "react"],
 	"parserOptions": {
+		"ecmaVersion": 2022,
 		"sourceType": "module",
 		"ecmaFeatures": {
 			"jsx": true
@@ -33,11 +24,7 @@
 	},
 	"rules": {
 		"prettier/prettier": "error",
-		"react/prop-types": [
-			0
-		],
-		"react/display-name": [
-			0
-		]
+		"react/prop-types": [0],
+		"react/display-name": [0]
 	}
 }

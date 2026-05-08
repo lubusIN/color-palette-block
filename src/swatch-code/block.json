@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lubus/color-palette-swatch-code",
+	"title": "Color Code",
+	"category": "design",
+	"parent": ["lubus/color-palette-swatch"],
+	"description": "Color code display inside the Color Palette block.",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".color-code",
+			"default": "#000000"
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false,
+		"color": {
+			"text": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true,
+			"textTransform": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		}
+	},
+	"textdomain": "color-palette-block-wp"
+}

@@ -2,26 +2,21 @@
  * WordPress dependencies
  */
 import { registerBlockType } from "@wordpress/blocks";
+import { swatch } from "@wordpress/icons";
 
 /**
  * Internal dependencies
  */
-import "./style.scss";
 import metadata from "./block.json";
 import Edit from "./edit";
 import save from "./save";
 import deprecated from "./deprecated";
-import ColorPaletteIcon from "./icon";
-import "./swatch";
-import "./swatch-color";
-import "./swatch-name";
-import "./swatch-code";
 
 /**
- * Registers the Color Palette block.
+ * Registers the Color Palette Swatch block.
  */
 registerBlockType(metadata, {
-	icon: ColorPaletteIcon,
+	icon: swatch,
 	edit: Edit,
 	save,
 	deprecated,

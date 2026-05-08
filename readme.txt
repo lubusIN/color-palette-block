@@ -2,8 +2,8 @@
 Contributors: lubus,ajitbohra, punitv342
 Donate link: http://www.lubus.in
 Tags: gutenberg, block, color, palette
-Requires at least: 3.0.1
-Tested up to:  6.9.4
+Requires at least: 6.0.1
+Tested up to:  6.9
 Stable tag: 2.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html

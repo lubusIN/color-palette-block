@@ -12,7 +12,7 @@
  * GitHub Plugin URI: https://github.com/lubusIN/color-palette-block
  * Tags: gutenberg, block, colors
  * Requires at least: 6.0.1
- * Tested up to:  6.9.4
+ * Tested up to:  6.9
  * Stable tag: 2.0.0
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -41,5 +41,9 @@ add_action( 'init', 'lubus_color_palette_block_load_textdomain' );
  */
 function lubus_color_palette_block_init() {
 	register_block_type( __DIR__ . '/build/' );
+	register_block_type( __DIR__ . '/build/swatch/' );
+	register_block_type( __DIR__ . '/build/swatch-color/' );
+	register_block_type( __DIR__ . '/build/swatch-name/' );
+	register_block_type( __DIR__ . '/build/swatch-code/' );
 }
 add_action( 'init', 'lubus_color_palette_block_init' );

@@ -1,101 +1,85 @@
+/* global clearTimeout, navigator, setTimeout */
+
 /**
- * WordPress Interactivity API for the Color Palette block.
- * Handles color code copying functionality with a shared popover and copy state management.
+ * WordPress dependencies
  */
-import { store, getContext } from '@wordpress/interactivity';
+import { store, getContext } from "@wordpress/interactivity";
 
-// Color format conversion functions
-function normalizeHex(hex) {
-	if (!hex) {
-		return null;
-	}
+/**
+ * Internal dependencies
+ */
+import { COPY_BUTTON_FORMATS } from "./utils/interactivity";
+import { hexToHsl, hexToRgb } from "./utils/colorValue";
 
-	const stripped = hex.replace('#', '').trim();
-	if (stripped.length === 3) {
-		return `#${stripped[0]}${stripped[0]}${stripped[1]}${stripped[1]}${stripped[2]}${stripped[2]}`;
-	}
-	if (stripped.length === 6) {
-		return `#${stripped}`;
-	}
+/**
+ * Internal constants
+ */
+const POPOVER_VERTICAL_GAP = 8;
+const POPOVER_CLOSE_DELAY = 300;
+const COPY_STATUS_RESET_DELAY = 1500;
+const COPY_BUTTON_LABELS = COPY_BUTTON_FORMATS.reduce(
+	(labels, format) => ({
+		...labels,
+		[format]: format.toUpperCase(),
+	}),
+	{},
+);
+const COPY_STATUS_SYMBOLS = {
+	success: "✓",
+	failed: "✗",
+};
 
-	return null;
-}
+/**
+ * Generates the CSS custom property name for the active swatch.
+ *
+ * @param {string} colorName Active swatch name.
+ * @return {string} CSS custom property name.
+ */
+const getCssVariableName = (colorName = "") =>
+	colorName
+		.toLowerCase()
+		.replace(/[^a-z0-9]/g, "-")
+		.replace(/-+/g, "-")
+		.replace(/^-|-$/g, "") || "color";
 
-function hexToRgb(hex) {
-	const normalizedHex = normalizeHex(hex);
-	if (!normalizedHex) {
-		return null;
-	}
-
-	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalizedHex);
-	if (!result) return null;
-
-	return {
-		r: parseInt(result[1], 16),
-		g: parseInt(result[2], 16),
-		b: parseInt(result[3], 16)
-	};
-}
-
-function hexToHsl(hex) {
-	const rgb = hexToRgb(hex);
-	if (!rgb) return null;
-
-	let { r, g, b } = rgb;
-	r /= 255;
-	g /= 255;
-	b /= 255;
-
-	const max = Math.max(r, g, b);
-	const min = Math.min(r, g, b);
-	let h, s, l = (max + min) / 2;
-
-	if (max === min) {
-		h = s = 0;
-	} else {
-		const d = max - min;
-		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-
-		switch (max) {
-			case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-			case g: h = (b - r) / d + 2; break;
-			case b: h = (r - g) / d + 4; break;
-		}
-		h /= 6;
-	}
-
-	return {
-		h: Math.round(h * 360),
-		s: Math.round(s * 100),
-		l: Math.round(l * 100)
-	};
-}
-
-function formatColor(color, format, colorName = '') {
+/**
+ * Formats the active swatch color for the requested copy action.
+ *
+ * @param {string} color     Normalized hex color.
+ * @param {string} format    Requested output format.
+ * @param {string} colorName Active swatch name.
+ * @return {string} Formatted color string.
+ */
+function formatColor(color, format, colorName = "") {
 	switch (format) {
-		case 'hex':
+		case "hex":
 			return color.toUpperCase();
-		case 'rgb':
+		case "rgb": {
 			const rgb = hexToRgb(color);
 			return rgb ? `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` : color;
-		case 'hsl':
+		}
+		case "hsl": {
 			const hsl = hexToHsl(color);
 			return hsl ? `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)` : color;
-		case 'css':
-			const cssVarName = colorName
-				.toLowerCase()
-				.replace(/[^a-z0-9]/g, '-')
-				.replace(/-+/g, '-')
-				.replace(/^-|-$/g, '') || 'color';
+		}
+		case "css": {
+			const cssVarName = getCssVariableName(colorName);
 			return `--${cssVarName}: ${color.toLowerCase()};`;
+		}
 		default:
 			return color;
 	}
 }
 
+/**
+ * Copies text to the clipboard using the modern API when available and a legacy
+ * textarea fallback when the editor runs inside an iframe.
+ *
+ * @param {string} text Text to copy.
+ * @return {Promise<boolean>} Whether the copy action succeeded.
+ */
 async function copyToClipboard(text) {
 	try {
-		// Try modern clipboard API first (works in secure contexts)
 		if (navigator.clipboard && window.isSecureContext && !window.frameElement) {
 			await navigator.clipboard.writeText(text);
 			return true;
@@ -105,34 +89,77 @@ async function copyToClipboard(text) {
 	}
 
 	// Legacy method that works better in iframes and insecure contexts
+	const textArea = document.createElement("textarea");
+
 	try {
-		const textArea = document.createElement('textarea');
 		textArea.value = text;
 
-		// Make the textarea invisible but accessible
-		textArea.style.position = 'fixed';
-		textArea.style.left = '-9999px';
-		textArea.style.top = '-9999px';
-		textArea.style.opacity = '0';
-		textArea.setAttribute('readonly', '');
-		textArea.setAttribute('aria-hidden', 'true');
+		textArea.style.position = "fixed";
+		textArea.style.left = "-9999px";
+		textArea.style.top = "-9999px";
+		textArea.style.opacity = "0";
+		textArea.setAttribute("readonly", "");
+		textArea.setAttribute("aria-hidden", "true");
 
 		document.body.appendChild(textArea);
 
-		// Select and copy
 		textArea.select();
 		textArea.setSelectionRange(0, 99999); // For mobile devices
 
-		const success = document.execCommand('copy');
-		document.body.removeChild(textArea);
-
-		return success;
+		return document.execCommand("copy");
 	} catch (error) {
-		console.error('Copy failed:', error);
+		console.error("Copy failed:", error);
 		return false;
+	} finally {
+		textArea.remove();
 	}
 }
 
+/**
+ * Clears a pending popover close timer from the current block context.
+ *
+ * @param {Object} context Interactivity context.
+ * @return {void}
+ */
+const clearCloseTimer = (context) => {
+	if (!context.closeTimerId) {
+		return;
+	}
+
+	clearTimeout(context.closeTimerId);
+	context.closeTimerId = null;
+};
+
+/**
+ * Starts the delayed popover close timer used when focus or pointer leaves a
+ * swatch trigger or the shared popover.
+ *
+ * @param {Object} context Interactivity context.
+ * @return {void}
+ */
+const startCloseTimer = (context) => {
+	clearCloseTimer(context);
+	context.closeTimerId = setTimeout(() => {
+		context.isPopoverOpen = false;
+		context.closeTimerId = null;
+	}, POPOVER_CLOSE_DELAY);
+};
+
+/**
+ * Builds the normalized copy status key stored in context.
+ *
+ * @param {string} format Copy format.
+ * @param {string} result Copy result.
+ * @return {string} Copy status key.
+ */
+const getCopyStatus = (format, result) => `${format}-${result}`;
+
+/**
+ * Opens and positions the shared copy popover relative to the active swatch.
+ *
+ * @param {Event} event Swatch interaction event.
+ * @return {void}
+ */
 const openPopoverFromEvent = (event) => {
 	const context = getContext();
 	const swatch = event?.currentTarget || event?.target;
@@ -141,127 +168,123 @@ const openPopoverFromEvent = (event) => {
 		return;
 	}
 
-	// Cancel any pending close timer
-	if (context.closeTimerId) {
-		clearTimeout(context.closeTimerId);
-		context.closeTimerId = null;
-	}
+	clearCloseTimer(context);
 
 	const colorHex = swatch.dataset.colorHex;
-	const colorName = swatch.dataset.colorName || '';
+	const colorName = swatch.dataset.colorName || "";
 
 	if (!colorHex) {
 		return;
 	}
 
-	const blockWrapper = swatch.closest('[data-wp-interactive="lubus/color-palette"]');
+	const blockWrapper = swatch.closest(
+		'[data-wp-interactive="lubus/color-palette"]',
+	);
 	if (!blockWrapper) {
 		return;
 	}
 
 	const blockRect = blockWrapper.getBoundingClientRect();
-	const colorItem = swatch.closest('.color-item');
-	const anchorRect = colorItem ? colorItem.getBoundingClientRect() : swatch.getBoundingClientRect();
-	const verticalGap = 8;
-	const top = anchorRect.bottom - blockRect.top + verticalGap;
-	const left = anchorRect.left - blockRect.left + (anchorRect.width / 2);
+	const colorItem = swatch.closest(".color-item");
+	const anchorRect = colorItem
+		? colorItem.getBoundingClientRect()
+		: swatch.getBoundingClientRect();
+	const top = anchorRect.bottom - blockRect.top + POPOVER_VERTICAL_GAP;
+	const left = anchorRect.left - blockRect.left + anchorRect.width / 2;
 
 	context.activeColorHex = colorHex;
 	context.activeColorName = colorName;
 	context.isPopoverOpen = true;
-	context.copyStatus = '';
+	context.copyStatus = "";
 	context.popoverTop = `${top}px`;
 	context.popoverLeft = `${left}px`;
 };
 
-const { state } = store('lubus/color-palette', {
+/**
+ * Returns the current button label for a copy format based on copy state.
+ *
+ * @param {string} format Copy format.
+ * @return {string} Button label or status symbol.
+ */
+const getButtonText = (format) => {
+	const context = getContext();
+	const label = COPY_BUTTON_LABELS[format];
+
+	if (context.copyStatus === getCopyStatus(format, "success")) {
+		return COPY_STATUS_SYMBOLS.success;
+	}
+
+	if (context.copyStatus === getCopyStatus(format, "failed")) {
+		return COPY_STATUS_SYMBOLS.failed;
+	}
+
+	return label;
+};
+
+/**
+ * Checks whether the current context matches a specific copy status.
+ *
+ * @param {string} format Copy format.
+ * @param {string} result Copy result.
+ * @return {boolean} Whether the context matches the requested status.
+ */
+const hasCopyStatus = (format, result) =>
+	getContext().copyStatus === getCopyStatus(format, result);
+
+store("lubus/color-palette", {
 	state: {
 		get hexButtonText() {
-			const context = getContext();
-			if (context.copyStatus === 'hex-success') return '✓';
-			if (context.copyStatus === 'hex-failed') return '✗';
-			return 'HEX';
+			return getButtonText("hex");
 		},
 		get rgbButtonText() {
-			const context = getContext();
-			if (context.copyStatus === 'rgb-success') return '✓';
-			if (context.copyStatus === 'rgb-failed') return '✗';
-			return 'RGB';
+			return getButtonText("rgb");
 		},
 		get hslButtonText() {
-			const context = getContext();
-			if (context.copyStatus === 'hsl-success') return '✓';
-			if (context.copyStatus === 'hsl-failed') return '✗';
-			return 'HSL';
+			return getButtonText("hsl");
 		},
 		get cssButtonText() {
-			const context = getContext();
-			if (context.copyStatus === 'css-success') return '✓';
-			if (context.copyStatus === 'css-failed') return '✗';
-			return 'CSS';
+			return getButtonText("css");
 		},
-		// Copied status getters for class bindings
 		get isHexCopied() {
-			return getContext().copyStatus === 'hex-success';
+			return hasCopyStatus("hex", "success");
 		},
 		get isRgbCopied() {
-			return getContext().copyStatus === 'rgb-success';
+			return hasCopyStatus("rgb", "success");
 		},
 		get isHslCopied() {
-			return getContext().copyStatus === 'hsl-success';
+			return hasCopyStatus("hsl", "success");
 		},
 		get isCssCopied() {
-			return getContext().copyStatus === 'css-success';
+			return hasCopyStatus("css", "success");
 		},
-		// Failed status getters for class bindings
 		get isHexFailed() {
-			return getContext().copyStatus === 'hex-failed';
+			return hasCopyStatus("hex", "failed");
 		},
 		get isRgbFailed() {
-			return getContext().copyStatus === 'rgb-failed';
+			return hasCopyStatus("rgb", "failed");
 		},
 		get isHslFailed() {
-			return getContext().copyStatus === 'hsl-failed';
+			return hasCopyStatus("hsl", "failed");
 		},
 		get isCssFailed() {
-			return getContext().copyStatus === 'css-failed';
-		}
+			return hasCopyStatus("css", "failed");
+		},
 	},
 	actions: {
 		openPopover(event) {
 			openPopoverFromEvent(event);
 		},
 		startCloseTimer() {
-			const context = getContext();
-			// Start a timer to close the popover after a short delay
-			// This allows time for the mouse to move from swatch to popover
-			if (context.closeTimerId) {
-				clearTimeout(context.closeTimerId);
-			}
-			context.closeTimerId = setTimeout(() => {
-				context.isPopoverOpen = false;
-				context.closeTimerId = null;
-			}, 150);
+			startCloseTimer(getContext());
 		},
 		cancelCloseTimer() {
-			const context = getContext();
-			// Cancel the close timer when hovering over the popover
-			if (context.closeTimerId) {
-				clearTimeout(context.closeTimerId);
-				context.closeTimerId = null;
-			}
+			clearCloseTimer(getContext());
 		},
 		closePopover() {
-			const context = getContext();
-			// Cancel any pending timer
-			if (context.closeTimerId) {
-				clearTimeout(context.closeTimerId);
-				context.closeTimerId = null;
-			}
-			context.isPopoverOpen = false;
+			startCloseTimer(getContext());
 		},
 		handleSwatchKeydown(event) {
-			if (event.key === 'Enter' || event.key === ' ') {
+			if (event.key === "Enter" || event.key === " ") {
 				event.preventDefault();
 				openPopoverFromEvent(event);
 			}
@@ -280,22 +303,19 @@ const { state } = store('lubus/color-palette', {
 
 			const formattedColor = formatColor(colorHex, format, colorName);
 
-			// Disable button during copy
 			button.disabled = true;
 
 			const success = await copyToClipboard(formattedColor);
 
-			if (success) {
-				context.copyStatus = `${format}-success`;
-			} else {
-				context.copyStatus = `${format}-failed`;
-			}
+			context.copyStatus = getCopyStatus(
+				format,
+				success ? "success" : "failed",
+			);
 
-			// Reset after delay
 			setTimeout(() => {
-				context.copyStatus = '';
+				context.copyStatus = "";
 				button.disabled = false;
-			}, 1500);
-		}
-	}
+			}, COPY_STATUS_RESET_DELAY);
+		},
+	},
 });
