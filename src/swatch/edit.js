@@ -128,7 +128,7 @@ export default function SwatchEdit({
 							onClick={syncSwatchStyles}
 							disabled={!canSyncStyles}
 						>
-							{__("Sync styles to all swatches", "color-palette-block-wp")}
+							{__("Sync styles to all swatches", "blablablocks-color-palette-block")}
 						</Button>
 					</div>,
 					summaryPortalTarget,

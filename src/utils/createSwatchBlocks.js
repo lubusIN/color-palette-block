@@ -3,10 +3,10 @@ import generateColorName from "./generateColorName";
 import { mergeStyleGroups, normalizeStyleGroups } from "./colorStyles";
 import { normalizeColorToHex } from "./colorValue";
 
-export const SWATCH_BLOCK_NAME = "lubus/color-palette-swatch";
-export const SWATCH_COLOR_BLOCK_NAME = "lubus/color-palette-swatch-color";
-export const SWATCH_NAME_BLOCK_NAME = "lubus/color-palette-swatch-name";
-export const SWATCH_CODE_BLOCK_NAME = "lubus/color-palette-swatch-code";
+export const SWATCH_BLOCK_NAME = "blablablocks/color-palette-swatch";
+export const SWATCH_COLOR_BLOCK_NAME = "blablablocks/color-palette-swatch-color";
+export const SWATCH_NAME_BLOCK_NAME = "blablablocks/color-palette-swatch-name";
+export const SWATCH_CODE_BLOCK_NAME = "blablablocks/color-palette-swatch-code";
 
 /**
  * Resolves legacy color payloads to the canonical swatch hex value.

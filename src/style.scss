@@ -3,14 +3,14 @@
  * and in the editor.
  */
 
-.wp-block-lubus-color-palette {
+.wp-block-blablablocks-color-palette {
 	position: relative;
 	margin: 2rem 0;
 	overflow: visible;
 }
 
 /* Only add padding when there are actual color items */
-.wp-block-lubus-color-palette:has(.color-item:not(.color-item--add)) {
+.wp-block-blablablocks-color-palette:has(.color-item:not(.color-item--add)) {
 	padding: 0.5rem;
 }
 
@@ -66,7 +66,7 @@
 }
 
 /* Style variations using WordPress block style classes */
-.wp-block-lubus-color-palette.is-style-circle {
+.wp-block-blablablocks-color-palette.is-style-circle {
 	.color-swatch {
 		border-radius: 50%;
 		/* Clean border and shadow */
@@ -80,7 +80,7 @@
 	}
 }
 
-.wp-block-lubus-color-palette.is-style-droplet {
+.wp-block-blablablocks-color-palette.is-style-droplet {
 	.color-item {
 		padding: 0.75rem 0.25rem;
 		margin-top: 15px;
@@ -120,7 +120,7 @@
 }
 
 /* Enhanced Polaroid style with complex box-shadow for authentic instant photo look */
-.wp-block-lubus-color-palette.is-style-polaroid {
+.wp-block-blablablocks-color-palette.is-style-polaroid {
 	.color-swatch {
 		/* Complex box-shadow for realistic polaroid effect */
 		box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 16px,
@@ -143,7 +143,7 @@
 }
 
 /* WordPress Core Palette Style - Clean palette card design */
-.wp-block-lubus-color-palette.is-style-palette {
+.wp-block-blablablocks-color-palette.is-style-palette {
 	.color-item {
 		background: #fff;
 		border: 1px solid #e0e0e0;
@@ -367,7 +367,7 @@
 	}
 
 	/* Droplet style mobile adjustments */
-	.wp-block-lubus-color-palette.is-style-droplet {
+	.wp-block-blablablocks-color-palette.is-style-droplet {
 		.color-item {
 			padding: 0.5rem 0.25rem;
 			margin-top: 10px;
@@ -399,7 +399,7 @@
 		}
 	}
 
-	.wp-block-lubus-color-palette.is-style-circle {
+	.wp-block-blablablocks-color-palette.is-style-circle {
 		.color-swatch {
 			border: 1px solid #e0e0e0;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
@@ -411,7 +411,7 @@
 		}
 	}
 
-	.wp-block-lubus-color-palette.is-style-polaroid {
+	.wp-block-blablablocks-color-palette.is-style-polaroid {
 		.color-swatch {
 			min-height: 100px !important;
 			/* Adjust complex shadows for smaller mobile size */
@@ -432,7 +432,7 @@
 	}
 
 	/* Palette style mobile adjustments */
-	.wp-block-lubus-color-palette.is-style-palette {
+	.wp-block-blablablocks-color-palette.is-style-palette {
 		.color-swatch {
 			height: 60px !important;
 			border-radius: 8px 8px 0 0 !important;

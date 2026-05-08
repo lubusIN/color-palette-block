@@ -90,7 +90,7 @@ const legacyAttributes = {
 		type: "array",
 		source: "query",
 		default: [],
-		selector: "ul.wp-block-lubus-color-palette li",
+		selector: "ul.wp-block-blablablocks-color-palette li",
 		query: {
 			swatch: {
 				selector: "span.cpb-color",
@@ -177,7 +177,7 @@ const renderInnerBlocksPalette = (attributes, className) => {
 		<div
 			{...useBlockProps.save({
 				style: getSwatchSizeStyle(swatchSize),
-				"data-wp-interactive": "lubus/color-palette",
+				"data-wp-interactive": "blablablocks/color-palette",
 				"data-wp-context": JSON.stringify(DEFAULT_INTERACTIVITY_CONTEXT),
 			})}
 		>
@@ -232,7 +232,7 @@ const renderArrayPalette = (attributes, className) => {
 		const cardStyle = getCardStyle(mergedStyles.card);
 		const nameStyle = getTypographyStyle(mergedStyles.name);
 		const codeStyle = getTypographyStyle(mergedStyles.code);
-		const fallbackName = color.name || __("Untitled", "color-palette-block-wp");
+		const fallbackName = color.name || __("Untitled", "blablablocks-color-palette-block");
 		const colorCode = color.color.toUpperCase();
 
 		return (
@@ -273,7 +273,7 @@ const renderArrayPalette = (attributes, className) => {
 	return (
 		<div
 			{...useBlockProps.save({
-				"data-wp-interactive": "lubus/color-palette",
+				"data-wp-interactive": "blablablocks/color-palette",
 				"data-wp-context": JSON.stringify(DEFAULT_INTERACTIVITY_CONTEXT),
 			})}
 		>

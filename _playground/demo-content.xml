@@ -35,9 +35,9 @@
 			<guid isPermaLink="false">
 				https://playground.wordpress.net/scope:sad-busy-park/?page_id=4</guid>
 			<description></description>
-			<content:encoded><![CDATA[<!-- wp:lubus/color-palette -->
-<ul class="wp-block-lubus-color-palette cpb-colors"></ul>
-<!-- /wp:lubus/color-palette -->]]></content:encoded>
+			<content:encoded><![CDATA[<!-- wp:blablablocks/color-palette -->
+<ul class="wp-block-blablablocks-color-palette cpb-colors"></ul>
+<!-- /wp:blablablocks/color-palette -->]]></content:encoded>
 			<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 			<wp:post_id>4</wp:post_id>
 			<wp:post_date><![CDATA[2025-12-19 16:59:55]]></wp:post_date>

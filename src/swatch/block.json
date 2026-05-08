@@ -1,11 +1,11 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "lubus/color-palette-swatch",
+	"name": "blablablocks/color-palette-swatch",
 	"title": "Swatch",
 	"category": "design",
 	"parent": [
-		"lubus/color-palette"
+		"blablablocks/color-palette"
 	],
 	"description": "A single swatch item inside the Color Palette block.",
 	"attributes": {
@@ -31,7 +31,7 @@
 		}
 	},
 	"providesContext": {
-		"lubus/color-palette/swatchColor": "color"
+		"blablablocks/color-palette/swatchColor": "color"
 	},
 	"supports": {
 		"html": false,
@@ -51,5 +51,5 @@
 			"padding": true
 		}
 	},
-	"textdomain": "color-palette-block-wp"
+	"textdomain": "blablablocks-color-palette-block"
 }

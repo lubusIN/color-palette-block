@@ -23,7 +23,7 @@ export default function SwatchNameEdit({ attributes, setAttributes }) {
 			tagName="div"
 			value={content}
 			allowedFormats={[]}
-			placeholder={__("Color name", "color-palette-block-wp")}
+			placeholder={__("Color name", "blablablocks-color-palette-block")}
 			onChange={(value) => setAttributes({ content: value })}
 		/>
 	);

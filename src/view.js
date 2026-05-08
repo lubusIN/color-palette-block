@@ -178,7 +178,7 @@ const openPopoverFromEvent = (event) => {
 	}
 
 	const blockWrapper = swatch.closest(
-		'[data-wp-interactive="lubus/color-palette"]',
+		'[data-wp-interactive="blablablocks/color-palette"]',
 	);
 	if (!blockWrapper) {
 		return;
@@ -231,7 +231,7 @@ const getButtonText = (format) => {
 const hasCopyStatus = (format, result) =>
 	getContext().copyStatus === getCopyStatus(format, result);
 
-store("lubus/color-palette", {
+store("blablablocks/color-palette", {
 	state: {
 		get hexButtonText() {
 			return getButtonText("hex");

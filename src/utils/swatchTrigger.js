@@ -20,8 +20,8 @@ export const getSwatchTriggerProps = ({
 	role: "button",
 	tabIndex: 0,
 	"aria-label": sprintf(
-		__("Show copy options for %s", "color-palette-block-wp"),
-		accessibleLabel || __("this color swatch", "color-palette-block-wp"),
+		__("Show copy options for %s", "blablablocks-color-palette-block"),
+		accessibleLabel || __("this color swatch", "blablablocks-color-palette-block"),
 	),
 	"data-color-hex": colorValue,
 	"data-color-name": colorName,

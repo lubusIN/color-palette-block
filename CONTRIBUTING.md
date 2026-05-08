@@ -1,7 +1,7 @@
 **Contribution Guide**
 ----------------------
 
-This page contains guidelines for contributing 'Color Palette Block'. Please review these guidelines before submitting any pull requests to this package.
+This page contains guidelines for contributing 'BlaBlaBlocks Color Palette Block'. Please review these guidelines before submitting any pull requests to this package.
 
 ***Pull Requests***
 

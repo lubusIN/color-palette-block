@@ -1,11 +1,11 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "lubus/color-palette-swatch-name",
+	"name": "blablablocks/color-palette-swatch-name",
 	"title": "Color Name",
 	"category": "design",
 	"parent": [
-		"lubus/color-palette-swatch"
+		"blablablocks/color-palette-swatch"
 	],
 	"description": "Editable swatch label inside the Color Palette block.",
 	"attributes": {
@@ -39,5 +39,5 @@
 			"width": true
 		}
 	},
-	"textdomain": "color-palette-block-wp"
+	"textdomain": "blablablocks-color-palette-block"
 }

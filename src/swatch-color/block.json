@@ -1,10 +1,10 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "lubus/color-palette-swatch-color",
+	"name": "blablablocks/color-palette-swatch-color",
 	"title": "Swatch Color",
 	"category": "design",
-	"parent": ["lubus/color-palette-swatch"],
+	"parent": ["blablablocks/color-palette-swatch"],
 	"description": "The visual color area inside a palette swatch.",
 	"attributes": {
 		"label": {
@@ -29,5 +29,5 @@
 			"width": true
 		}
 	},
-	"textdomain": "color-palette-block-wp"
+	"textdomain": "blablablocks-color-palette-block"
 }

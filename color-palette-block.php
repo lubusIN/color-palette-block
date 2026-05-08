@@ -1,13 +1,14 @@
 <?php
+
 /**
  * Contributors: lubus, ajitbohra, punitv342
- * Plugin Name: Color Palette Block
+ * Plugin Name: BlaBlaBlocks Color Palette Block
  * Plugin URI: https://www.lubus.in
  * Description: Add color palettes to your website
  * Author: LUBUS
  * Author URI: https://lubus.in
  * Version: 2.0.0
- * Text Domain: color-palette-block-wp
+ * Text Domain: blablablocks-color-palette-block
  * Domain Path: /languages
  * GitHub Plugin URI: https://github.com/lubusIN/color-palette-block
  * Tags: gutenberg, block, colors
@@ -17,20 +18,21 @@
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @package lubusIN_Color_Palette_Block
+ * @package BlaBlaBlocks_Color_Palette_Block
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
 /**
  * Register plugin text domain for translations.
  */
-function lubus_color_palette_block_load_textdomain() {
-	load_plugin_textdomain( 'color-palette-block-wp', false, basename( __DIR__ ) . '/languages' );
+function blablablocks_color_palette_block_load_textdomain()
+{
+	load_plugin_textdomain('blablablocks-color-palette-block', false, basename(__DIR__) . '/languages');
 }
-add_action( 'init', 'lubus_color_palette_block_load_textdomain' );
+add_action('init', 'blablablocks_color_palette_block_load_textdomain');
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -39,11 +41,12 @@ add_action( 'init', 'lubus_color_palette_block_load_textdomain' );
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function lubus_color_palette_block_init() {
-	register_block_type( __DIR__ . '/build/' );
-	register_block_type( __DIR__ . '/build/swatch/' );
-	register_block_type( __DIR__ . '/build/swatch-color/' );
-	register_block_type( __DIR__ . '/build/swatch-name/' );
-	register_block_type( __DIR__ . '/build/swatch-code/' );
+function blablablocks_color_palette_block_init()
+{
+	register_block_type(__DIR__ . '/build/');
+	register_block_type(__DIR__ . '/build/swatch/');
+	register_block_type(__DIR__ . '/build/swatch-color/');
+	register_block_type(__DIR__ . '/build/swatch-name/');
+	register_block_type(__DIR__ . '/build/swatch-code/');
 }
-add_action( 'init', 'lubus_color_palette_block_init' );
+add_action('init', 'blablablocks_color_palette_block_init');

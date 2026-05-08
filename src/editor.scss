@@ -10,7 +10,7 @@
 }
 
 /* Special handling for polaroid style */
-.wp-block-lubus-color-palette.is-style-polaroid .color-item:hover {
+.wp-block-blablablocks-color-palette.is-style-polaroid .color-item:hover {
 	outline-offset: 4px !important; /* Account for white frame */
 }
 
@@ -20,19 +20,19 @@
 }
 
 /* Special handling for droplet style */
-.wp-block-lubus-color-palette.is-style-droplet .color-item:hover {
+.wp-block-blablablocks-color-palette.is-style-droplet .color-item:hover {
 	outline-offset: 4px !important; /* Account for rotated shape */
 }
 
 /* Special handling for palette style - maintain border radius and show overflow */
-.wp-block-lubus-color-palette.is-style-palette .color-item:hover {
+.wp-block-blablablocks-color-palette.is-style-palette .color-item:hover {
 	outline-offset: 1px !important; /* Minimal outline for clean appearance */
 	border-radius: 8px !important; /* Maintain the palette style border radius */
 	overflow: visible !important; /* Ensure delete button is visible */
 }
 
 /* Special handling for circle style */
-.wp-block-lubus-color-palette.is-style-circle .color-item:hover {
+.wp-block-blablablocks-color-palette.is-style-circle .color-item:hover {
 	outline-offset: 2px !important; /* Standard outline for circle style */
 }
 
@@ -104,7 +104,7 @@
 }
 
 /* Special handling for palette style delete button */
-.wp-block-lubus-color-palette.is-style-palette {
+.wp-block-blablablocks-color-palette.is-style-palette {
 	.color-item {
 		/* Ensure overflow is visible on hover to show delete button */
 		&:hover {
@@ -123,12 +123,12 @@
 }
 
 /* Remove style-specific border radius overrides since all delete buttons are now circular */
-.wp-block-lubus-color-palette.is-style-circle .remove-color-btn,
-.wp-block-lubus-color-palette.is-style-droplet .remove-color-btn,
-.wp-block-lubus-color-palette.is-style-polaroid .remove-color-btn,
-.wp-block-lubus-color-palette.is-style-default .remove-color-btn,
-.wp-block-lubus-color-palette.is-style-palette .remove-color-btn,
-.wp-block-lubus-color-palette:not([class*="is-style-"]) .remove-color-btn {
+.wp-block-blablablocks-color-palette.is-style-circle .remove-color-btn,
+.wp-block-blablablocks-color-palette.is-style-droplet .remove-color-btn,
+.wp-block-blablablocks-color-palette.is-style-polaroid .remove-color-btn,
+.wp-block-blablablocks-color-palette.is-style-default .remove-color-btn,
+.wp-block-blablablocks-color-palette.is-style-palette .remove-color-btn,
+.wp-block-blablablocks-color-palette:not([class*="is-style-"]) .remove-color-btn {
 	border-radius: 50% !important; /* All delete buttons are now circular */
 }
 
@@ -225,7 +225,7 @@
 }
 
 /* Fix plus icon rotation in droplet style */
-.wp-block-lubus-color-palette.is-style-droplet {
+.wp-block-blablablocks-color-palette.is-style-droplet {
 	.color-item--add {
 		/* Clean styling - remove all borders and shadows */
 		border: none !important;
@@ -289,7 +289,7 @@
 }
 
 /* Circle style for add button - remove border and shadow from parent */
-.wp-block-lubus-color-palette.is-style-circle {
+.wp-block-blablablocks-color-palette.is-style-circle {
 	.color-item--add {
 		/* Remove border and shadow from parent */
 		border: none !important;
@@ -337,7 +337,7 @@
 }
 
 /* Polaroid style for add button */
-.wp-block-lubus-color-palette.is-style-polaroid {
+.wp-block-blablablocks-color-palette.is-style-polaroid {
 	.color-item--add {
 		/* Remove all styling from placeholder item */
 		border: none !important;
@@ -388,7 +388,7 @@
 }
 
 /* Palette style for add button - match color item structure */
-.wp-block-lubus-color-palette.is-style-palette {
+.wp-block-blablablocks-color-palette.is-style-palette {
 	.color-item--add {
 		background: #fff !important; /* Force white background */
 		border: 1px solid #e0e0e0 !important; /* Force border */

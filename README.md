@@ -1,86 +1,97 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/1039236/38085557-935d7ce8-336e-11e8-920e-dc2d46610c6a.png"></p>
+<p align="center"><img height="75" src="https://user-images.githubusercontent.com/1039236/38085557-935d7ce8-336e-11e8-920e-dc2d46610c6a.png"></p>
 
-<p align="center">
-<a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/wordpress/plugin/v/color-palette-block.svg" alt="Latest Stable Version"></a> <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/wordpress/v/color-palette-block.svg" alt="Version Tested"></a> <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/wordpress/plugin/dt/color-palette-block.svg" alt="Downloads"></a> <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/wordpress/plugin/r/color-palette-block.svg" alt="Rating"></a> <a href="https://wordpress.org/plugins/color-palette-block/"><img src="https://img.shields.io/aur/license/yaourt.svg" alt="Licence"></a>
-<a href="https://github.com/lubusin/color-palette-block/blob/master/CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs"></a>
-</p>
+![BlaBlaBlocks Color Palette Block](https://raw.githubusercontent.com/lubusIN/color-palette-block/master/.wordpress-org/screenshot-1.gif)
 
-Helps you quickly create & share color palettes on your website.
+[![Live Preview](https://img.shields.io/badge/Live%20Preview-3858e9?style=for-the-badge&logo=wordpress&logoColor=fff)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/lubusIN/color-palette-block/master/_playground/blueprint-github.json) [![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/color-palette-block?style=for-the-badge&logo=wordpress&label=Install&labelColor=blue)](https://wordpress.org/plugins/color-palette-block/)
 
-![Plugin Screenshot](https://raw.githubusercontent.com/lubusIN/color-palette-block/master/.wordpress-org/screenshot-1.gif)
+## Overview
 
+Build and share beautiful color palettes inside the WordPress block editor.
 
->**Disclaimer:** Plugin development is in progress & we are constantly improving the code. If you think code can be improved or have any suggestion feel free to send a PR or [open an issue](https://github.com/lubusIN/color-palette-block/issues).
+## Requirements
 
-## Roadmap
-
-- More customization
+- WordPress 6.6+
+- PHP 7.4+
 
 ## Installation
 
-***From your WordPress dashboard***
- 1. Visit 'Plugins > Add New'
- 2. Search for `Color Palette`  or upload zip file
- 3. Activate `Color Palette` from your Plugins page
+### Automatic
 
-## Manual Installation
- 1. [Download](https://wordpress.org/plugins/color-palette-block/) "Color Palette".
- 2. Upload the `color-palette-block` directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...)
- 3. Activate `Color Palette` from your Plugins page.
+1. Go to Plugins → Add New in your WordPress dashboard.
+2. Search for BlaBlaBlocks Color Palette Block.
+3. Click Install Now and then Activate.
+
+### Manual
+
+1. [Download](https://wordpress.org/plugins/color-palette-block/) the latest plugin release.
+2. Visit `Plugins > Add New`.
+3. Upload the `color-palette-block.zip` file.
+4. Activate **BlaBlaBlocks Color Palette Block** from the plugins page.
 
 ## Usage
 
-- Simply activate and new block for "Color Palette" will be added to block inserter<br/>
-- Insert block and add your colors<br/>
-- Live preview palette in your editor for the details.
+### Core Workflow
 
-## Changelog
+- Add the **Color Palette** block from the block inserter.
+- Add swatches manually, import theme colors, or generate random colors.
+- Choose a display style: **Square**, **Polaroid**, **Circle**, or **Droplet**.
+- Copy color values in **HEX**, **RGB**, **HSL**, or **CSS variable** format.
 
-Please see the [Changelog](CHANGELOG.md) 
+> [!NOTE]
+> Refer to [readme.txt](readme.txt) for WordPress.org-specific plugin details and FAQs.
 
-## Feedback / Suggestions
+## Development
 
-If you have any suggestions/feature request that you would like to see in the upcoming releases, feel free to let us know in the [issues section](https://github.com/lubusIN/color-palette-block/issues)
+### 1. Clone the repository
+
+```bash
+git clone git@github.com:lubusIN/color-palette-block.git
+```
+
+### 2. Go to the plugin folder
+
+```bash
+cd color-palette-block
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Build plugin
+
+```bash
+npm run build       # Compile source files
+# OR
+npm run start       # Watch for changes and auto-compile
+```
+
+### 5. Launch Playground
+
+```bash
+npm run serve
+```
+
+> [!NOTE]
+> Refer to `package.json` for additional npm scripts.
 
 ## Contributing
 
-Thank you in advance if you wish to contribute to the `Color Palette Block`. You can read the contribution guide lines [here](CONTRIBUTING.md)
+Contributions are welcome. Please review [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-Check the development tasklist [here](https://github.com/lubusIN/color-palette-block/projects/1), if something interests you or want to suggest something click [here](https://github.com/lubusIN/color-palette-block/issues)
-
-## Security
-
-If you discover any security related issues, please email to [ajit@lubus.in](mailto:ajit@lubus.com) instead of using the issue tracker.
-
-## Credits
-
-[Ajit Bohra](http://https://twitter.com/ajitbohra)
-
-## Other Gutenberg Goodies
-<table width="100%">
-	<tr>
-		<td width="33.33%">
-		<a href="https://github.com/lubusIN/dummynator">
-			<img src="https://raw.githubusercontent.com/lubusIN/dummynator/master/.wordpress-org/logo.png" alt="Dummynator" />
-		</a>
-		</td>
-		<td width="33.33%">
-			<a href="https://github.com/lubusIN/block-background">
-			<img src="https://user-images.githubusercontent.com/1039236/38365718-068c190e-38fb-11e8-8ada-a4a50cfd95d1.png" alt="Block Background"/>
-			</a>
-		</td>
-		<td width="33.33%"><strong><i>Coming Soon ...</i></strong></td>
-	</tr>
-</table>
+- Feature requests / bugs: [Issues](https://github.com/lubusIN/color-palette-block/issues)
+- Release notes: [CHANGELOG.md](CHANGELOG.md)
 
 ## Meet Your Artisans
 
-[LUBUS](http://lubus.in) is a web design agency based in Mumbai.
+[LUBUS](https://lubus.in/?utm_source=github&utm_medium=open-source&utm_campaign=color-palette-block) is a web design agency based in Mumbai.
 
 <a href="https://cal.com/lubus">
-<img src="https://raw.githubusercontent.com/lubusIN/.github/refs/heads/main/profile/banner.png" />
+	<img src="https://raw.githubusercontent.com/lubusIN/.github/refs/heads/main/profile/banner.png" />
 </a>
 
 ## License
 
-'Color Palette' is an open-source software licensed under the [GPL 3.0 license](LICENSE)
+BlaBlaBlocks Color Palette Block is an open-source plugin licensed under the [GPL 3.0 license](LICENSE)

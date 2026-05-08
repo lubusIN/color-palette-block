@@ -2,7 +2,7 @@
 /**
  * Server render callback for the Color Palette block.
  *
- * @package lubusIN_Color_Palette_Block
+ * @package BlaBlaBlocks_Color_Palette_Block
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -48,7 +48,7 @@ $render_copy_button = static function ( $format ) {
  * to avoid duplicate wrappers until the post is edited and re-saved.
  */
 if (
-	false !== strpos( $content, 'data-wp-interactive="lubus/color-palette"' ) &&
+	false !== strpos( $content, 'data-wp-interactive="blablablocks/color-palette"' ) &&
 	false !== strpos( $content, 'color-copy-popover' )
 ) {
 	echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -56,7 +56,7 @@ if (
 }
 
 $extra_attributes = array(
-	'data-wp-interactive' => 'lubus/color-palette',
+	'data-wp-interactive' => 'blablablocks/color-palette',
 	'data-wp-context'     => wp_json_encode( $context ),
 );
 
