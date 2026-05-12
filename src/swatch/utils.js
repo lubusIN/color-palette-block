@@ -15,7 +15,8 @@ export const ALLOWED_BLOCKS = [
 	SWATCH_CODE_BLOCK_NAME,
 ];
 
-export const stripTags = (value = "") => value.replace(/<[^>]+>/g, "").trim();
+export const stripTags = (value = "") =>
+	String(value).replace(/<[^>]+>/g, "").trim();
 
 /**
  * Resolves the preferred swatch label for the current color selection.
@@ -45,37 +46,3 @@ export const getSwatchLabel = (
 
 	return generateColorName(resolvedColorValue);
 };
-
-/**
- * Builds the locked inner block template for a swatch.
- *
- * @param {string} label      Swatch label.
- * @param {string} colorValue Resolved swatch color.
- * @param {string} colorCode  Display-ready uppercase code.
- * @return {Array} Locked inner block template.
- */
-export const buildSwatchTemplate = (label, colorValue, colorCode) => [
-	[
-		SWATCH_COLOR_BLOCK_NAME,
-		{
-			label,
-			style: {
-				color: {
-					background: colorValue,
-				},
-			},
-		},
-	],
-	[
-		SWATCH_NAME_BLOCK_NAME,
-		{
-			content: label,
-		},
-	],
-	[
-		SWATCH_CODE_BLOCK_NAME,
-		{
-			content: colorCode,
-		},
-	],
-];

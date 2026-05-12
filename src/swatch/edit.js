@@ -13,7 +13,7 @@ import { __ } from "@wordpress/i18n";
 import { getCardStyle, normalizeStyleGroups } from "../utils/colorStyles";
 import { resolveSwatchColorValue } from "../utils/swatchColor";
 import { selectSwatchEditorState } from "./selectors";
-import { ALLOWED_BLOCKS, buildSwatchTemplate, getSwatchLabel } from "./utils";
+import { ALLOWED_BLOCKS, getSwatchLabel } from "./utils";
 import { useSwatchChildSync } from "./useSwatchChildSync";
 import { useSwatchSummaryPortal } from "./useSwatchSummaryPortal";
 import { canSyncSwatchStyles, syncSwatchStylesToSiblings } from "./styleSync";
@@ -100,7 +100,6 @@ export default function SwatchEdit({
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
-		template: buildSwatchTemplate(fallbackName, resolvedColorValue, colorCode),
 		templateLock: "insert",
 		renderAppender: false,
 	});

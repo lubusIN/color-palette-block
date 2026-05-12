@@ -93,6 +93,7 @@ export const useSwatchChildSync = ({
 
 	useEffect(() => {
 		const normalizedName = stripTags(nameBlockContent);
+		const normalizedParentName = stripTags(name);
 
 		if (pendingGeneratedNameRef.current) {
 			if (normalizedName === pendingGeneratedNameRef.current) {
@@ -102,7 +103,7 @@ export const useSwatchChildSync = ({
 			return;
 		}
 
-		if (normalizedName && normalizedName !== name) {
+		if (normalizedName && normalizedName !== normalizedParentName) {
 			setAttributes({ name: normalizedName });
 		}
 	}, [name, nameBlockContent, setAttributes]);
@@ -167,14 +168,6 @@ export const useSwatchChildSync = ({
 		attributeName: "label",
 		blockClientId: colorBlockClientId,
 		currentValue: colorBlockLabel,
-		nextValue: fallbackName,
-		updateBlockAttributes,
-	});
-
-	useSyncedBlockAttribute({
-		attributeName: "content",
-		blockClientId: nameBlockClientId,
-		currentValue: nameBlockContent,
 		nextValue: fallbackName,
 		updateBlockAttributes,
 	});
