@@ -33,9 +33,7 @@
 	cursor: pointer;
 	z-index: 1;
 	overflow: visible;
-	/* Remove border and shadow from default square style */
 	background: transparent;
-	border: none;
 	box-shadow: none;
 
 	&:hover {
@@ -49,6 +47,7 @@
 	cursor: pointer;
 	border-radius: 4px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	box-sizing: border-box;
 	overflow: visible;
 	width: min(100%, var(--cpb-swatch-size, 100%));
 	aspect-ratio: 1;
@@ -69,13 +68,18 @@
 .wp-block-blablablocks-color-palette.is-style-circle {
 	.color-swatch {
 		border-radius: 50%;
-		/* Clean border and shadow */
-		border: 1px solid #e0e0e0;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+
+		&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border:"]) {
+			border: 1px solid #e0e0e0;
+		}
 
 		&:hover {
 			box-shadow: 0 4px 8px rgba(0, 0, 0, .12);
-			border-color: #ccc;
+
+			&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border:"]) {
+				border-color: #ccc;
+			}
 		}
 	}
 }
@@ -86,27 +90,30 @@
 		margin-top: 15px;
 		overflow: visible;
 		min-height: 140px;
-		/* Remove background styles - only the swatch should have styling */
 		background: transparent;
-		border: none;
 		box-shadow: none;
 	}
 
 	.color-swatch {
 		/* Use specified droplet shape properties */
-		border-radius: 50% 50% 50% 0 !important;
+		border-radius: 50% 50% 50% 0;
 		height: var(--cpb-swatch-size, 100px) !important;
 		transform: rotate(135deg) !important;
 		width: var(--cpb-swatch-size, 100px) !important;
 		margin: 10px auto 15px;
-		/* Apply clean shadow and border */
 		background: #fff;
-		border: 1px solid #e0e0e0;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+
+		&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border:"]) {
+			border: 1px solid #e0e0e0;
+		}
 
 		&:hover {
 			box-shadow: 0 4px 8px rgba(0, 0, 0, .12);
-			border-color: #ccc;
+
+			&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border:"]) {
+				border-color: #ccc;
+			}
 		}
 	}
 
@@ -146,18 +153,24 @@
 .wp-block-blablablocks-color-palette.is-style-palette {
 	.color-item {
 		background: #fff;
-		border: 1px solid #e0e0e0;
-		border-radius: 8px;
 		padding: 0;
 		overflow: hidden;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 
+		&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border-radius"]):not([style*="border:"]) {
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+		}
+
 		&:hover {
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-			border-color: #ccc;
 			transform: translateY(-1px);
-			border-radius: 8px !important;
 			overflow: visible;
+
+			&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border-radius"]):not([style*="border:"]) {
+				border-color: #ccc;
+				border-radius: 8px;
+			}
 		}
 	}
 
@@ -373,24 +386,29 @@
 			margin-top: 10px;
 			min-height: 120px;
 			background: transparent;
-			border: none;
 			box-shadow: none;
 		}
 
 		.color-swatch {
 			/* Adjust droplet shape for mobile while maintaining specified properties */
-			border-radius: 50% 50% 50% 0 !important;
+			border-radius: 50% 50% 50% 0;
 			height: 70px !important;
 			transform: rotate(135deg) !important;
 			width: 70px !important;
 			margin: 8px auto 12px;
 			background: #fff;
-			border: 1px solid #e0e0e0;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+
+			&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border:"]) {
+				border: 1px solid #e0e0e0;
+			}
 
 			&:hover {
 				box-shadow: 0 4px 8px rgba(0, 0, 0, .12);
-				border-color: #ccc;
+
+				&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border:"]) {
+					border-color: #ccc;
+				}
 			}
 		}
 
@@ -401,12 +419,18 @@
 
 	.wp-block-blablablocks-color-palette.is-style-circle {
 		.color-swatch {
-			border: 1px solid #e0e0e0;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+
+			&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border:"]) {
+				border: 1px solid #e0e0e0;
+			}
 
 			&:hover {
 				box-shadow: 0 4px 8px rgba(0, 0, 0, .12);
-				border-color: #ccc;
+
+				&:not([style*="border-color"]):not([style*="border-width"]):not([style*="border-style"]):not([style*="border:"]) {
+					border-color: #ccc;
+				}
 			}
 		}
 	}
