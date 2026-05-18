@@ -1,34 +1,35 @@
-=== BlaBlaBlocks Color Palette Block ===
+=== Color Palette Block ===
 Contributors:      lubus, ajitbohra, punitv342
 Tags:              gutenberg, block, color, palette, design system
-Requires at least: 6.0.1
-Tested up to:      6.9
+Requires at least: 6.6
+Tested up to:      7.0
+Requires PHP:      7.4
 Stable tag:        2.0.0
-License:           GPLv3 or later
-License URI:       https://www.gnu.org/licenses/gpl-3.0.html
+License:           MIT
+License URI:       https://www.gnu.org/licenses/MIT
 
 Build and share beautiful color palettes with multiple display styles and easy color code copying.
 
 == Description ==
 
-BlaBlaBlocks Color Palette Block helps you create and showcase curated color collections directly in the WordPress block editor.
+Color Palette Block helps you create and showcase curated color collections directly in the WordPress block editor.
 It is ideal for design systems, brand documentation, UI references, and visual style guides.
 
-With BlaBlaBlocks Color Palette Block, you can add multiple swatches, switch between unique display styles, and copy each color in common code formats for development and handoff.
+With Color Palette Block, you can add multiple swatches, switch between unique display styles, and copy each color in common code formats for development and handoff.
 
 ### Key Features
 
 * **Multiple display styles** - Choose from **Square**, **Polaroid**, **Circle**, and **Droplet** swatch presentations.
 * **Flexible color code output** - Copy color values in **HEX**, **RGB**, **HSL**, and **CSS variable** formats.
-* **Interactive editing flow** - Add, update, and organize swatches with live editor feedback.
+* **Zero Dependencies** No jQuery or heavy JS frameworks powered by the **Interactivity API**.
 * **Theme color integration** - Pull colors directly from your active theme palette.
 * **Random palette generation** - Quickly generate swatches and auto-suggest names.
-* **Responsive frontend output** - Palettes adapt cleanly across desktop and mobile.
+* **Responsive by Default** - Palettes adapt cleanly across desktop and mobile.
 
 ### Why Choose BlaBlaBlocks Color Palette Block?
 
 Because color decisions need to be both visual and usable.
-BlaBlaBlocks Color Palette Block makes it easy to present colors clearly for designers, clients, and developers while keeping everything inside the native Gutenberg workflow.
+Color Palette Block makes it easy to present colors clearly for designers, clients, and developers while keeping everything inside the native Gutenberg workflow.
 
 * No shortcodes or custom HTML required.
 * Editor-first workflow with instant visual feedback.
@@ -141,7 +142,6 @@ Yes. The palette layout is responsive and adapts to different screen sizes.
 1. Add and manage color swatches in the editor.
 2. Switch between Square, Polaroid, Circle, and Droplet display styles.
 3. Copy color values in HEX, RGB, HSL, or CSS variable format.
-4. Import theme colors and generate random palettes quickly.
 
 == Changelog ==
 

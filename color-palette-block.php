@@ -1,22 +1,16 @@
 <?php
 
 /**
- * Contributors: lubus, ajitbohra, punitv342
- * Plugin Name: BlaBlaBlocks Color Palette Block
- * Plugin URI: https://www.lubus.in
- * Description: Add color palettes to your website
- * Author: LUBUS
- * Author URI: https://lubus.in
- * Version: 2.0.0
- * Text Domain: blablablocks-color-palette-block
- * Domain Path: /languages
- * GitHub Plugin URI: https://github.com/lubusIN/color-palette-block
- * Tags: gutenberg, block, colors
- * Requires at least: 6.0.1
- * Tested up to:  6.9
- * Stable tag: 2.0.0
- * License: GPLv3 or later
- * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ * Plugin Name:			BlaBlaBlocks Color Palette Block
+ * Description: 		Add color palettes to your website
+ * Version: 			2.0.0
+ * Requires at least: 	6.6
+ * Requires PHP: 		7.4
+ * Author: 				LUBUS
+ * Author URI:			https://lubus.in
+ * License: 			MIT
+ * License URI: 		https://www.gnu.org/licenses/MIT
+ * Text Domain: 		blablablocks-color-palette-block
  *
  * @package BlaBlaBlocks_Color_Palette_Block
  */

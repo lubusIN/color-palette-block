@@ -28,18 +28,6 @@ Build and share beautiful color palettes inside the WordPress block editor.
 3. Upload the `color-palette-block.zip` file.
 4. Activate **BlaBlaBlocks Color Palette Block** from the plugins page.
 
-## Usage
-
-### Core Workflow
-
-- Add the **Color Palette** block from the block inserter.
-- Add swatches manually, import theme colors, or generate random colors.
-- Choose a display style: **Square**, **Polaroid**, **Circle**, or **Droplet**.
-- Copy color values in **HEX**, **RGB**, **HSL**, or **CSS variable** format.
-
-> [!NOTE]
-> Refer to [readme.txt](readme.txt) for WordPress.org-specific plugin details and FAQs.
-
 ## Development
 
 ### 1. Clone the repository
@@ -77,13 +65,6 @@ npm run serve
 > [!NOTE]
 > Refer to `package.json` for additional npm scripts.
 
-## Contributing
-
-Contributions are welcome. Please review [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
-
-- Feature requests / bugs: [Issues](https://github.com/lubusIN/color-palette-block/issues)
-- Release notes: [CHANGELOG.md](CHANGELOG.md)
-
 ## Meet Your Artisans
 
 [LUBUS](https://lubus.in/?utm_source=github&utm_medium=open-source&utm_campaign=color-palette-block) is a web design agency based in Mumbai.
@@ -94,4 +75,4 @@ Contributions are welcome. Please review [CONTRIBUTING.md](CONTRIBUTING.md) befo
 
 ## License
 
-BlaBlaBlocks Color Palette Block is an open-source plugin licensed under the [GPL 3.0 license](LICENSE)
+BlaBlaBlocks Color Palette Block is an open-source plugin licensed under the [MIT license](LICENSE)
