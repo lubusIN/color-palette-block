@@ -69,7 +69,7 @@ jobs:
         run: |
           VERSION="${{ steps.get-version.outputs.VERSION }}"
 
-          if ! grep -q "Stable tag: $VERSION" readme.txt; then
+          if ! grep -Eq "^Stable tag:[[:space:]]+$VERSION$" readme.txt; then
             echo "readme.txt Stable tag does not match tag version: $VERSION"
             exit 1
           fi
