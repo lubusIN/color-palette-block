@@ -17,19 +17,14 @@
         {
             "step": "setSiteOptions",
             "options": {
-                "blogname": "BlaBlaBlocks Color Palette Block | GitHub"
+                "blogname": "Wordpress BlaBlaBlocks Color Palette Block"
             }
         },
         {
             "step": "installPlugin",
-            "pluginData": {
-                "resource": "git:directory",
-                "url": "https://github.com/lubusIN/color-palette-block.git",
-                "ref": "playground",
-                "refType": "branch"
-            },
-            "options": {
-                "targetFolderName": "color-palette-block"
+            "pluginZipFile": {
+                "resource": "wordpress.org/plugins",
+                "slug": "color-palette-block"
             }
         },
         {
