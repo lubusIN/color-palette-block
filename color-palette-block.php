@@ -20,15 +20,6 @@ if (! defined('ABSPATH')) {
 }
 
 /**
- * Register plugin text domain for translations.
- */
-function blablablocks_color_palette_block_load_textdomain()
-{
-	load_plugin_textdomain('blablablocks-color-palette-block', false, basename(__DIR__) . '/languages');
-}
-add_action('init', 'blablablocks_color_palette_block_load_textdomain');
-
-/**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
  * through the block editor in the corresponding context.
