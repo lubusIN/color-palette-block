@@ -61,7 +61,7 @@ export const syncSwatchStylesToSiblings = ({
 	createSuccessNotice(
 		__(
 			"Swatch styles synced without changing swatch colors.",
-			"blablablocks-color-palette-block",
+			"color-palette-block",
 		),
 		{
 			type: "snackbar",

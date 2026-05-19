@@ -150,9 +150,9 @@ export default function Edit({
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__("Swatch Size", "blablablocks-color-palette-block")}>
+				<PanelBody title={__("Swatch Size", "color-palette-block")}>
 					<RangeControl
-						label={__("Size", "blablablocks-color-palette-block")}
+						label={__("Size", "color-palette-block")}
 						value={swatchSize || DEFAULT_SWATCH_SIZE}
 						onChange={(nextSize) =>
 							setAttributes({
@@ -172,7 +172,7 @@ export default function Edit({
 				<ToolbarGroup>
 					<ToolbarButton
 						icon={plus}
-						label={__("Add swatch", "blablablocks-color-palette-block")}
+						label={__("Add swatch", "color-palette-block")}
 						onClick={addSingleSwatch}
 					/>
 				</ToolbarGroup>
@@ -185,32 +185,32 @@ export default function Edit({
 							<div {...innerBlocksProps} />
 							<div className="color-palette__editor-actions">
 								<Button variant="secondary" onClick={addSingleSwatch}>
-									{__("Add Swatch", "blablablocks-color-palette-block")}
+									{__("Add Swatch", "color-palette-block")}
 								</Button>
 							</div>
 						</>
 					) : (
 						<Placeholder
 							icon={<ColorPaletteIcon />}
-							label={__("Color Palette", "blablablocks-color-palette-block")}
+							label={__("Color Palette", "color-palette-block")}
 							instructions={__(
 								"Add swatches, import theme colors, or generate a random palette.",
-								"blablablocks-color-palette-block",
+								"color-palette-block",
 							)}
 						>
 							{themeColors.length > 0 && (
 								<Button variant="primary" onClick={addThemeColors}>
-									{__("Theme Colors", "blablablocks-color-palette-block")}
+									{__("Theme Colors", "color-palette-block")}
 								</Button>
 							)}
 							<Button
 								variant={themeColors.length > 0 ? "secondary" : "primary"}
 								onClick={addRandomPalette}
 							>
-								{__("Surprise Me", "blablablocks-color-palette-block")}
+								{__("Surprise Me", "color-palette-block")}
 							</Button>
 							<Button variant="secondary" onClick={addSingleSwatch}>
-								{__("Add Swatch", "blablablocks-color-palette-block")}
+								{__("Add Swatch", "color-palette-block")}
 							</Button>
 							{/* Keep the inner blocks mount available so placeholder actions can insert the first swatch. */}
 							<div {...innerBlocksProps} style={{ display: "none" }} />

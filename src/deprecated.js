@@ -232,7 +232,7 @@ const renderArrayPalette = (attributes, className) => {
 		const cardStyle = getCardStyle(mergedStyles.card);
 		const nameStyle = getTypographyStyle(mergedStyles.name);
 		const codeStyle = getTypographyStyle(mergedStyles.code);
-		const fallbackName = color.name || __("Untitled", "blablablocks-color-palette-block");
+		const fallbackName = color.name || __("Untitled", "color-palette-block");
 		const colorCode = color.color.toUpperCase();
 
 		return (

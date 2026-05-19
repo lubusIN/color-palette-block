@@ -10,7 +10,7 @@
  * Author URI:			https://lubus.in
  * License: 			MIT
  * License URI: 		https://www.gnu.org/licenses/MIT
- * Text Domain: 		blablablocks-color-palette-block
+ * Text Domain: 		color-palette-block
  *
  * @package BlaBlaBlocks_Color_Palette_Block
  */

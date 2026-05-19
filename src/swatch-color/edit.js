@@ -18,7 +18,7 @@ export default function SwatchColorEdit({ attributes }) {
 		<div
 			{...useBlockProps({
 				className: "color-swatch",
-				"aria-label": label || __("Color swatch", "blablablocks-color-palette-block"),
+				"aria-label": label || __("Color swatch", "color-palette-block"),
 			})}
 		/>
 	);

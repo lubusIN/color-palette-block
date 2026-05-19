@@ -203,7 +203,7 @@
 			}
 		}
 	},
-	"textdomain": "blablablocks-color-palette-block",
+	"textdomain": "color-palette-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
