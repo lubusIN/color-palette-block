@@ -3,7 +3,7 @@ name: Sync to Playground
 on:
   push:
     branches:
-      - 2.x
+      - main
 
 jobs:
   build-and-push-on-push:
