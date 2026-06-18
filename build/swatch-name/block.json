@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blablablocks/color-palette-swatch-name",
+  "title": "Color Name",
+  "category": "design",
+  "parent": [
+    "blablablocks/color-palette-swatch"
+  ],
+  "description": "Editable swatch label inside the Color Palette block.",
+  "attributes": {
+    "content": {
+      "type": "string",
+      "source": "html",
+      "selector": ".color-name",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false,
+    "color": {
+      "text": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "textTransform": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  },
+  "textdomain": "color-palette-block"
+}
